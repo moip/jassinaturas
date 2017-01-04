@@ -38,6 +38,7 @@ public class SubscriptionClientTest {
     @Rule
     public Recorder recorder = new Recorder();
 
+
     @Betamax(tape = "ACTIVATE_SUBSCRIPTION", match = { MatchRule.method, MatchRule.uri })
     @Test
     public void shouldActivateASubscription() {
