@@ -5,8 +5,8 @@ build:
     - script:
         name: show gradle information
         code: |
-          gradle --version
+          mvn --version
     - script:
-        name: run gradle
+        name: run maven
         code: |
-          ./gradlew test -PossrhUsername=test -PossrhPassword=test
+          mvn clean install --settings settings.xml -Dmaven.repo.local=$WERCKER_CACHE_DIR/.m2/repository
