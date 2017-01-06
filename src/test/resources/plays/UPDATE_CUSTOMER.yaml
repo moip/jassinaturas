@@ -1,7 +1,6 @@
 !play
 name: UPDATE_CUSTOMER
 interactions:
-- recorded: 2014-03-01T23:43:33.868Z
   request:
     method: PUT
     uri: https://sandbox.moip.com.br/assinaturas/v1/customers/customer0001_toBeUpdated

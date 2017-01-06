@@ -1,7 +1,6 @@
 !play
 name: SUSPEND_SUBSCRIPTION
 interactions:
-- recorded: 2014-02-11T23:59:10.100Z
   request:
     method: PUT
     uri: https://sandbox.moip.com.br/assinaturas/v1/subscriptions/assinatura07/suspend

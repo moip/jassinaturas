@@ -1,7 +1,6 @@
 !play
 name: CREATE_CUSTOMER
 interactions:
-- recorded: 2014-01-19T17:16:22.198Z
   request:
     method: POST
     uri: https://sandbox.moip.com.br/assinaturas/v1/customers?new_vault=true

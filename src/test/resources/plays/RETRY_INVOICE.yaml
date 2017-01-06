@@ -1,7 +1,6 @@
 !play
 name: RETRY_INVOICE
 interactions:
-- recorded: 2014-03-05T00:04:48.121Z
   request:
     method: POST
     uri: https://sandbox.moip.com.br/assinaturas/v1/invoices/14606/retry

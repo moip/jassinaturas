@@ -1,7 +1,6 @@
 !play
 name: CANCEL_SUBSCRIPTION
 interactions:
-- recorded: 2014-02-12T00:00:54.798Z
   request:
     method: PUT
     uri: https://sandbox.moip.com.br/assinaturas/v1/subscriptions/assinatura13/cancel

@@ -3,7 +3,9 @@ package sdk.jassinaturas.clients;
 import co.freeside.betamax.Betamax;
 import co.freeside.betamax.MatchRule;
 import co.freeside.betamax.Recorder;
+import com.rodrigosaito.mockwebserver.player.Play;
 import org.junit.Assert;
+import org.junit.Rule;
 import org.junit.Test;
 import sdk.jassinaturas.Assinaturas;
 import sdk.jassinaturas.clients.attributes.Authentication;
@@ -26,9 +28,10 @@ public class PlanClientTest {
     private final Assinaturas assinaturas = new Assinaturas(new Authentication("SGPA0K0R7O0IVLRPOVLJDKAWYBO1DZF3",
             "QUJESGM9JU175OGXRFRJIYM0SIFOMIFUYCBWH9WA"), new SandboxCommunicator());
 
+    @Rule
     public Recorder recorder = new Recorder();
 
-    @Betamax(tape = "ACTIVATE_PLAN", match = { MatchRule.method, MatchRule.uri })
+    @Play("ACTIVATE_PLAN")
     @Test
     public void shouldActivateAPlan() {
 
@@ -38,7 +41,7 @@ public class PlanClientTest {
         // So, I didn't do any assert
     }
 
-    //@Betamax(tape = "CREATE_PLAN", match = { MatchRule.body, MatchRule.method, MatchRule.uri })
+    @Play("CREATE_PLAN")
     @Test
     public void shouldCreateANewPlan() {
         Plan toCreate = new Plan();
@@ -52,7 +55,7 @@ public class PlanClientTest {
         assertEquals("Plano criado com sucesso", created.getMessage());
     }
 
-    //@Betamax(tape = "INACTIVATE_PLAN", match = { MatchRule.method, MatchRule.uri })
+    @Play("INACTIVATE_PLAN")
     @Test
     public void shouldInactivateAPlan() {
 
@@ -63,14 +66,14 @@ public class PlanClientTest {
         // So, I didn't do any assert
     }
 
-    @Betamax(tape = "LIST_ALL_PLANS", match = { MatchRule.method, MatchRule.uri })
+    @Play("LIST_ALL_PLANS")
     @Test
     public void shouldListAllPlans() {
         List<Plan> plans = assinaturas.plans().list();
         assertEquals(7, plans.size());
     }
 
-    @Betamax(tape = "CREATE_PLAN_RETURNED_ERROR")
+    @Play("CREATE_PLAN_RETURNED_ERROR")
     @Test
     public void shouldReturnErrors() {
         Plan toCreate = new Plan();
@@ -90,7 +93,7 @@ public class PlanClientTest {
         }
     }
 
-    @Betamax(tape = "GET_SINGLE_PLAN", match = { MatchRule.method, MatchRule.uri })
+    @Play("GET_SINGLE_PLAN")
     @Test
     public void shouldShowAPlan() {
         Plan plan = assinaturas.plans().show("plan001");
@@ -109,7 +112,7 @@ public class PlanClientTest {
         assertEquals(5, plan.getTrial().getDays());
     }
 
-    @Betamax(tape = "UPDATE_PLAN", match = { MatchRule.body, MatchRule.method, MatchRule.uri })
+    @Play("UPDATE_PLAN")
     @Test
     public void shouldUpdateAPlan() {
         Plan toUpdate = new Plan();
@@ -125,7 +128,7 @@ public class PlanClientTest {
 
     }
 
-    @Betamax(tape = "CREATE_PLAN_PRODUCTION", match = { MatchRule.body, MatchRule.uri })
+    @Play("CREATE_PLAN_PRODUCTION")
     @Test
     public void shouldCreateANewPlanInProductionEnvironment() {
         Assinaturas assinaturas = new Assinaturas(new Authentication("SGPA0K0R7O0IVLRPOVLJDKAWYBO1DZF3",
@@ -143,7 +146,7 @@ public class PlanClientTest {
         assertEquals("Plano criado com sucesso", created.getMessage());
     }
 
-    @Betamax(tape = "GET_SINGLE_PLAN", match = { MatchRule.method, MatchRule.uri })
+    @Play("GET_SINGLE_PLAN")
     @Test
     public void shouldGetResultFromToString() {
         String plan = assinaturas.plans().show("plan001").toString();

@@ -5,6 +5,7 @@ import static org.junit.Assert.fail;
 
 import java.util.List;
 
+import com.rodrigosaito.mockwebserver.player.Play;
 import org.junit.Rule;
 import org.junit.Test;
 
@@ -58,8 +59,7 @@ public class CustomerClientTest {
         assertEquals("Cliente criado com sucesso", created.getMessage());
     }
 
-    @Betamax(tape = "CREATE_CUSTOMER_WITHOUT_CREDITCARD",
-            match = { MatchRule.body, MatchRule.method })
+    @Play("CREATE_CUSTOMER_WITHOUT_CREDITCARD")
     @Test
     public void shouldCreateANewCustomerWithoutCreditCard() {
         Customer toCreate = new Customer();
@@ -80,7 +80,7 @@ public class CustomerClientTest {
         assertEquals("Cliente criado com sucesso", created.getMessage());
     }
 
-    @Betamax(tape = "LIST_ALL_CUSTOMERS", match = { MatchRule.method })
+    @Play("LIST_ALL_CUSTOMERS")
     @Test
     public void shouldListAllCustomers() {
         List<Customer> customers = assinaturas.customers().list();
@@ -96,7 +96,7 @@ public class CustomerClientTest {
         assertEquals("Danillo Souza", customers.get(0).getFullname());
     }
 
-    @Betamax(tape = "CREATE_CUSTOMER_RETURNED_ERROR")
+    @Play("CREATE_CUSTOMER_RETURNED_ERROR")
     @Test
     public void shouldReturnErrors() {
         Customer toCreate = new Customer();
@@ -124,7 +124,7 @@ public class CustomerClientTest {
 
     }
 
-    @Betamax(tape = "GET_SINGLE_CUSTOMER", match = { MatchRule.method })
+    @Play("GET_SINGLE_CUSTOMER")
     @Test
     public void shouldShowACustomer() {
         Customer customer = assinaturas.customers().show("customer000000001");
@@ -156,7 +156,7 @@ public class CustomerClientTest {
 
     }
 
-    @Betamax(tape = "UPDATE_CREDITCARD", match = { MatchRule.body, MatchRule.method })
+    @Play("UPDATE_CREDITCARD")
     @Test
     public void shouldUpdateACreditCard() {
         Customer toUpdate = new Customer();
@@ -170,7 +170,7 @@ public class CustomerClientTest {
 
     }
 
-    @Betamax(tape = "UPDATE_CUSTOMER", match = { MatchRule.body, MatchRule.method })
+    @Play("UPDATE_CUSTOMER")
     @Test
     public void shouldUpdateACustomer() {
         Customer toUpdate = new Customer();
@@ -193,8 +193,7 @@ public class CustomerClientTest {
 
     }
 
-    @Betamax(tape = "CREATE_CUSTOMER_PRODUCTION", match = { MatchRule.body, MatchRule.method,
-            MatchRule.uri })
+    @Play("CREATE_CUSTOMER_PRODUCTION")
     @Test
     public void shouldUseProductionEnvironmentToCreateACustomer() {
         Assinaturas assinaturas = new Assinaturas(new Authentication("SGPA0K0R7O0IVLRPOVLJDKAWYBO1DZF3",
@@ -222,7 +221,7 @@ public class CustomerClientTest {
         assertEquals("Cliente criado com sucesso", created.getMessage());
     }
 
-    @Betamax(tape = "GET_SINGLE_CUSTOMER", match = { MatchRule.method })
+    @Play("GET_SINGLE_CUSTOMER")
     @Test
     public void shouldGetResultFromToString() {
         String customer = assinaturas.customers().show("customer000000001").toString();

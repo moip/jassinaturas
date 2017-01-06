@@ -1,7 +1,6 @@
 !play
 name: CREATE_CUSTOMER_PRODUCTION
 interactions:
-- recorded: 2014-03-03T21:54:59.686Z
   request:
     method: POST
     uri: https://api.moip.com.br/assinaturas/v1/customers?new_vault=true

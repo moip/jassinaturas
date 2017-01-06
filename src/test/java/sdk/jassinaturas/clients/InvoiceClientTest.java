@@ -4,6 +4,7 @@ import static org.junit.Assert.assertEquals;
 
 import java.util.List;
 
+import com.rodrigosaito.mockwebserver.player.Play;
 import org.junit.Rule;
 import org.junit.Test;
 
@@ -25,7 +26,7 @@ public class InvoiceClientTest {
     @Rule
     public Recorder recorder = new Recorder();
 
-    @Betamax(tape = "GET_PAYMENTS_FROM_INVOICE", match = { MatchRule.method, MatchRule.uri })
+    @Play("GET_PAYMENTS_FROM_INVOICE")
     @Test
     public void shouldGetPaymentsFromAInvoice() {
         List<Payment> payments = assinaturas.invoices().payments(12872);
@@ -55,7 +56,7 @@ public class InvoiceClientTest {
 
     }
 
-    @Betamax(tape = "GET_SINGLE_INVOICE", match = { MatchRule.method, MatchRule.uri })
+    @Play("GET_SINGLE_INVOICE")
     @Test
     public void shouldShowAInvoice() {
         Invoice invoice = assinaturas.invoices().show(12872);
@@ -86,7 +87,7 @@ public class InvoiceClientTest {
         assertEquals("customer_created_with_subscription_0001", invoice.getCustomer().getCode());
     }
 
-    @Betamax(tape = "RETRY_INVOICE", match = { MatchRule.method, MatchRule.uri })
+    @Play("RETRY_INVOICE")
     @Test
     public void shouldRetryAInvoice() {
         Invoice invoice = assinaturas.invoices().retry(14606);
@@ -96,7 +97,7 @@ public class InvoiceClientTest {
         // So, I didn't do any assert
     }
 
-    @Betamax(tape = "GET_SINGLE_INVOICE", match = { MatchRule.method, MatchRule.uri })
+    @Play("GET_SINGLE_INVOICE")
     @Test
     public void shouldGetResultFromToString() {
         String invoice = assinaturas.invoices().show(12872).toString();

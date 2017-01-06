@@ -1,7 +1,6 @@
 !play
 name: GET_SINGLE_SUBSCRIPTION
 interactions:
-- recorded: 2014-02-11T23:08:51.524Z
   request:
     method: GET
     uri: https://sandbox.moip.com.br/assinaturas/v1/subscriptions/subscription00001

@@ -1,7 +1,6 @@
 !play
 name: UPDATE_SUBSCRIPTION_ADDING_COUPON
 interactions:
-- recorded: 2015-07-05T22:58:36.387Z
   request:
     method: PUT
     uri: https://sandbox.moip.com.br/assinaturas/v1/subscriptions/assinatura46

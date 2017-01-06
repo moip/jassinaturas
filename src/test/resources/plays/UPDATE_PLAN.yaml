@@ -1,7 +1,6 @@
 !play
 name: UPDATE_PLAN
 interactions:
-- recorded: 2014-01-04T01:15:37.334Z
   request:
     method: PUT
     uri: https://sandbox.moip.com.br/assinaturas/v1/plans/plan001

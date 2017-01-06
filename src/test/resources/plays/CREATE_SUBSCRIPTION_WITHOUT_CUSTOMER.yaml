@@ -1,7 +1,6 @@
 !play
 name: CREATE_SUBSCRIPTION_WITHOUT_CUSTOMER
 interactions:
-- recorded: 2014-01-22T01:00:41.413Z
   request:
     method: POST
     uri: https://sandbox.moip.com.br/assinaturas/v1/subscriptions?new_customer=false

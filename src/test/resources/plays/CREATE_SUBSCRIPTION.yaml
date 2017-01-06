@@ -1,7 +1,6 @@
 !play
 name: CREATE_SUBSCRIPTION
 interactions:
-- recorded: 2014-01-22T01:00:28.859Z
   request:
     method: POST
     uri: https://sandbox.moip.com.br/assinaturas/v1/subscriptions?new_customer=true

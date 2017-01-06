@@ -1,7 +1,6 @@
 !play
 name: ACTIVATE_PLAN
 interactions:
-- recorded: 2014-02-21T00:19:43.750Z
   request:
     method: PUT
     uri: https://sandbox.moip.com.br/assinaturas/v1/plans/plan01/activate

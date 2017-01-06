@@ -1,7 +1,6 @@
 !play
 name: GET_INVOICES_FROM_SUBSCRIPTION
 interactions:
-- recorded: 2014-02-14T00:10:07.856Z
   request:
     method: GET
     uri: https://sandbox.moip.com.br/assinaturas/v1/subscriptions/subscription00001/invoices

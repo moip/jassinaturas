@@ -1,7 +1,6 @@
 !play
 name: UPDATE_CREDITCARD
 interactions:
-- recorded: 2014-01-19T17:40:28.561Z
   request:
     method: PUT
     uri: https://sandbox.moip.com.br/assinaturas/v1/customers/customer0001_toBeUpdated/billing_infos

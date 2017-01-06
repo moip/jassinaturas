@@ -1,7 +1,6 @@
 !play
 name: LIST_ALL_SUBSCRIPTIONS
 interactions:
-- recorded: 2014-02-11T23:02:57.088Z
   request:
     method: GET
     uri: https://sandbox.moip.com.br/assinaturas/v1/subscriptions

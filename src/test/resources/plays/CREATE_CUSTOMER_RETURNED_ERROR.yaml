@@ -1,7 +1,6 @@
 !play
 name: CREATE_CUSTOMER_RETURNED_ERROR
 interactions:
-- recorded: 2014-01-21T22:53:35.632Z
   request:
     method: POST
     uri: https://sandbox.moip.com.br/assinaturas/v1/customers?new_vault=false

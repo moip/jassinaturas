@@ -1,7 +1,6 @@
 !play
 name: GET_SINGLE_PLAN
 interactions:
-- recorded: 2014-01-04T01:39:56.808Z
   request:
     method: GET
     uri: https://sandbox.moip.com.br/assinaturas/v1/plans/plan001

@@ -1,7 +1,6 @@
 !play
 name: ACTIVATE_SUBSCRIPTION
 interactions:
-- recorded: 2014-02-11T23:56:33.118Z
   request:
     method: PUT
     uri: https://sandbox.moip.com.br/assinaturas/v1/subscriptions/assinatura06/activate

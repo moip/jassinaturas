@@ -1,7 +1,6 @@
 !play
 name: CREATE_PLAN
 interactions:
-- recorded: 2014-01-03T18:52:00.826Z
   request:
     method: POST
     uri: https://sandbox.moip.com.br/assinaturas/v1/plans
