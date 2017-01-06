@@ -3,7 +3,8 @@ package sdk.jassinaturas.clients;
 import co.freeside.betamax.Betamax;
 import co.freeside.betamax.MatchRule;
 import co.freeside.betamax.Recorder;
-import org.junit.Assert;
+import com.rodrigosaito.mockwebserver.player.Play;
+import com.rodrigosaito.mockwebserver.player.Player;
 import org.junit.Rule;
 import org.junit.Test;
 import sdk.jassinaturas.Assinaturas;
@@ -27,25 +28,29 @@ public class CouponClientTest {
             "QUJESGM9JU175OGXRFRJIYM0SIFOMIFUYCBWH9WA"), new SandboxCommunicator());
 
     @Rule
-    public Recorder recorder = new Recorder();
+    public Player player = new Player();
 
-    @Betamax(tape = "ACTIVATE_COUPON", match = { MatchRule.method, MatchRule.uri })
+    public CouponClientTest() {
+        player.setPort(9000);
+    }
+
+    @Play("ACTIVATE_COUPON")
     @Test
-    public void shouldActivateCoupon() throws Exception {
+    public void shouldActivateCoupon() {
         Coupon coupon = assinaturas.coupons().activate("jassinaturas_coupon_01");
 
         assertEquals(CouponStatus.ACTIVE, coupon.getStatus());
     }
 
-    @Betamax(tape = "INACTIVATE_COUPON", match = { MatchRule.method, MatchRule.uri })
+    @Play("INACTIVATE_COUPON")
     @Test
-    public void shouldInactivateCoupon() throws Exception {
+    public void shouldInactivateCoupon() {
         Coupon coupon = assinaturas.coupons().activate("jassinaturas_coupon_01");
 
         assertEquals(CouponStatus.INACTIVE, coupon.getStatus());
     }
 
-    @Betamax(tape = "CREATE_COUPON", match = { MatchRule.body, MatchRule.method, MatchRule.uri })
+    @Play("CREATE_COUPON")
     @Test
     public void createCoupon() {
         Coupon toBeCreated = new Coupon();
@@ -54,8 +59,8 @@ public class CouponClientTest {
                 .withName("JAssinaturas")
                 .withDescription("Coupon for test control")
                 .withDiscount(new Discount()
-                                .withValue(1000)
-                                .withType(DiscountType.PERCENT))
+                        .withValue(1000)
+                        .withType(DiscountType.PERCENT))
                 .withStatus(CouponStatus.ACTIVE)
                 .withDuration(new Duration()
                         .withType(DurationType.REPEATING)

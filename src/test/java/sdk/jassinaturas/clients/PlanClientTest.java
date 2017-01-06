@@ -1,14 +1,10 @@
 package sdk.jassinaturas.clients;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-
-import java.util.List;
-
+import co.freeside.betamax.Betamax;
+import co.freeside.betamax.MatchRule;
+import co.freeside.betamax.Recorder;
 import org.junit.Assert;
-import org.junit.Rule;
 import org.junit.Test;
-
 import sdk.jassinaturas.Assinaturas;
 import sdk.jassinaturas.clients.attributes.Authentication;
 import sdk.jassinaturas.clients.attributes.Interval;
@@ -19,16 +15,17 @@ import sdk.jassinaturas.clients.attributes.Unit;
 import sdk.jassinaturas.communicators.ProductionCommunicator;
 import sdk.jassinaturas.communicators.SandboxCommunicator;
 import sdk.jassinaturas.exceptions.ApiResponseErrorException;
-import co.freeside.betamax.Betamax;
-import co.freeside.betamax.MatchRule;
-import co.freeside.betamax.Recorder;
+
+import java.util.List;
+
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 
 public class PlanClientTest {
 
     private final Assinaturas assinaturas = new Assinaturas(new Authentication("SGPA0K0R7O0IVLRPOVLJDKAWYBO1DZF3",
             "QUJESGM9JU175OGXRFRJIYM0SIFOMIFUYCBWH9WA"), new SandboxCommunicator());
 
-    @Rule
     public Recorder recorder = new Recorder();
 
     @Betamax(tape = "ACTIVATE_PLAN", match = { MatchRule.method, MatchRule.uri })
@@ -41,7 +38,7 @@ public class PlanClientTest {
         // So, I didn't do any assert
     }
 
-    @Betamax(tape = "CREATE_PLAN", match = { MatchRule.body, MatchRule.method, MatchRule.uri })
+    //@Betamax(tape = "CREATE_PLAN", match = { MatchRule.body, MatchRule.method, MatchRule.uri })
     @Test
     public void shouldCreateANewPlan() {
         Plan toCreate = new Plan();
@@ -55,7 +52,7 @@ public class PlanClientTest {
         assertEquals("Plano criado com sucesso", created.getMessage());
     }
 
-    @Betamax(tape = "INACTIVATE_PLAN", match = { MatchRule.method, MatchRule.uri })
+    //@Betamax(tape = "INACTIVATE_PLAN", match = { MatchRule.method, MatchRule.uri })
     @Test
     public void shouldInactivateAPlan() {
 

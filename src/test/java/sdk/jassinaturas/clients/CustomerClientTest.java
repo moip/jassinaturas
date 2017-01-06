@@ -33,7 +33,7 @@ public class CustomerClientTest {
     @Rule
     public Recorder recorder = new Recorder();
 
-    @Betamax(tape = "CREATE_CUSTOMER", match = { MatchRule.body, MatchRule.method })
+
     @Test
     public void shouldCreateANewCustomer() {
         Customer toCreate = new Customer();
