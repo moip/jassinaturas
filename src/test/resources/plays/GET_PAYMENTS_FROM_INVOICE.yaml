@@ -1,4 +1,4 @@
-!tape
+!play
 name: GET_PAYMENTS_FROM_INVOICE
 interactions:
 - recorded: 2014-02-16T17:17:57.531Z

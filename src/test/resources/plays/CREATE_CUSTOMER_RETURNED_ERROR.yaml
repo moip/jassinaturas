@@ -1,4 +1,4 @@
-!tape
+!play
 name: CREATE_CUSTOMER_RETURNED_ERROR
 interactions:
 - recorded: 2014-01-21T22:53:35.632Z

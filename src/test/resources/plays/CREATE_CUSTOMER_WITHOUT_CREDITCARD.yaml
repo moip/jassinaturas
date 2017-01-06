@@ -1,4 +1,4 @@
-!tape
+!play
 name: CREATE_CUSTOMER_WITHOUT_CREDITCARD
 interactions:
 - recorded: 2014-01-19T17:17:46.148Z

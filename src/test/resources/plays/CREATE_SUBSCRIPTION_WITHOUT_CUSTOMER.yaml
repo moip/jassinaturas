@@ -1,4 +1,4 @@
-!tape
+!play
 name: CREATE_SUBSCRIPTION_WITHOUT_CUSTOMER
 interactions:
 - recorded: 2014-01-22T01:00:41.413Z

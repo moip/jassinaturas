@@ -35,10 +35,8 @@ public class SubscriptionClientTest {
     private final Assinaturas assinaturas = new Assinaturas(new Authentication("SGPA0K0R7O0IVLRPOVLJDKAWYBO1DZF3",
             "QUJESGM9JU175OGXRFRJIYM0SIFOMIFUYCBWH9WA"), new SandboxCommunicator());
 
-
-
+    @Rule
     public Player player = new Player();
-
 
     @Play("ACTIVATE_SUBSCRIPTION")
     @Test
@@ -52,7 +50,7 @@ public class SubscriptionClientTest {
 
     }
 
-    @Betamax(tape = "CANCEL_SUBSCRIPTION", match = { MatchRule.method, MatchRule.uri })
+    @Play("CANCEL_SUBSCRIPTION")
     @Test
     public void shouldCancelASubscription() {
 
@@ -64,8 +62,7 @@ public class SubscriptionClientTest {
 
     }
 
-    @Betamax(tape = "CREATE_SUBSCRIPTION",
-            match = { MatchRule.body, MatchRule.method, MatchRule.uri })
+    @Play("CREATE_SUBSCRIPTION")
     @Test
     public void shouldCreateANewSubscription() {
         Subscription toBeCreated = new Subscription();
@@ -112,8 +109,7 @@ public class SubscriptionClientTest {
         assertEquals(created.getCustomer().getFullname(), "Danillo Souza");
     }
 
-    @Betamax(tape = "CREATE_SUBSCRIPTION_WITHOUT_CUSTOMER", match = { MatchRule.body, MatchRule.method,
-            MatchRule.uri })
+    @Play("CREATE_SUBSCRIPTION_WITHOUT_CUSTOMER")
     @Test
     public void shouldCreateANewSubscriptionWithoutANewCustomer() {
         Subscription toBeCreated = new Subscription();
@@ -141,7 +137,7 @@ public class SubscriptionClientTest {
         assertEquals(created.getCustomer().getFullname(), "Danillo Souza");
     }
 
-    @Betamax(tape = "LIST_ALL_SUBSCRIPTIONS", match = { MatchRule.method, MatchRule.uri })
+    @Play("LIST_ALL_SUBSCRIPTIONS")
     @Test
     public void shouldListAllSubscriptions() {
 
@@ -152,7 +148,7 @@ public class SubscriptionClientTest {
         assertEquals(60, subscriptions.size());
     }
 
-    @Betamax(tape = "CREATE_SUBSCRIPTION_RETURNED_ERROR")
+    @Play("CREATE_SUBSCRIPTION_RETURNED_ERROR")
     @Test
     public void shouldReturnErrors() {
         Subscription toBeCreated = new Subscription();
@@ -170,7 +166,7 @@ public class SubscriptionClientTest {
         }
     }
 
-    @Betamax(tape = "GET_INVOICES_FROM_SUBSCRIPTION", match = { MatchRule.method, MatchRule.uri })
+    @Play("GET_INVOICES_FROM_SUBSCRIPTION")
     @Test
     public void shouldReturnInvoicesFromSubscription() {
         List<Invoice> invoices = assinaturas.subscriptions().invoices("subscription00001");
@@ -193,7 +189,7 @@ public class SubscriptionClientTest {
 
     }
 
-    @Betamax(tape = "GET_SINGLE_SUBSCRIPTION", match = { MatchRule.method, MatchRule.uri })
+    @Play("GET_SINGLE_SUBSCRIPTION")
     @Test
     public void shouldShowASubscription() {
 
@@ -229,7 +225,7 @@ public class SubscriptionClientTest {
         assertEquals(1, subscription.getNextInvoiceDate().getDay());
     }
 
-    @Betamax(tape = "SUSPEND_SUBSCRIPTION", match = { MatchRule.method, MatchRule.uri })
+    @Play("SUSPEND_SUBSCRIPTION")
     @Test
     public void shouldSuspendASubscription() {
 
@@ -241,7 +237,7 @@ public class SubscriptionClientTest {
 
     }
 
-    @Betamax(tape = "UPDATE_SUBSCRIPTION", match = { MatchRule.method, MatchRule.uri })
+    @Play("UPDATE_SUBSCRIPTION")
     @Test
     public void shouldUpdateASubscription() {
 
@@ -257,7 +253,7 @@ public class SubscriptionClientTest {
 
     }
 
-    @Betamax(tape = "GET_SINGLE_SUBSCRIPTION", match = { MatchRule.method, MatchRule.uri })
+    @Play("GET_SINGLE_SUBSCRIPTION")
     @Test
     public void shouldGetResultFromToString() {
         String subscription = assinaturas.subscriptions().show("subscription00001").toString();
@@ -267,7 +263,7 @@ public class SubscriptionClientTest {
                 subscription);
     }
 
-    @Betamax(tape = "UPDATE_SUBSCRIPTION_ADDING_COUPON", match = { MatchRule.method, MatchRule.uri })
+    @Play("UPDATE_SUBSCRIPTION_ADDING_COUPON")
     @Test
     public void addingCouponToASubscription() {
         Subscription toUpdate = new Subscription();

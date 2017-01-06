@@ -1,4 +1,4 @@
-!tape
+!play
 name: CREATE_SUBSCRIPTION_RETURNED_ERROR
 interactions:
 - recorded: 2014-01-22T01:02:44.428Z

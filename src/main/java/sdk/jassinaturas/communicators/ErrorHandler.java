@@ -11,7 +11,6 @@ import feign.codec.ErrorDecoder;
 
 public class ErrorHandler implements ErrorDecoder {
 
-    @Override
     public Exception decode(final String arg0, final Response arg1) {
       
       if(arg1.body() == null){

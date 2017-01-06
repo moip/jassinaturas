@@ -1,4 +1,4 @@
-!tape
+!play
 name: CREATE_PLAN_RETURNED_ERROR
 interactions:
 - recorded: 2014-01-19T18:00:32.866Z
