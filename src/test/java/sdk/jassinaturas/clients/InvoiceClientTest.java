@@ -1,30 +1,27 @@
 package sdk.jassinaturas.clients;
 
-import static org.junit.Assert.assertEquals;
-
-import java.util.List;
-
 import com.rodrigosaito.mockwebserver.player.Play;
+import com.rodrigosaito.mockwebserver.player.Player;
 import org.junit.Rule;
 import org.junit.Test;
-
 import sdk.jassinaturas.Assinaturas;
 import sdk.jassinaturas.clients.attributes.Authentication;
 import sdk.jassinaturas.clients.attributes.Invoice;
 import sdk.jassinaturas.clients.attributes.Month;
 import sdk.jassinaturas.clients.attributes.Payment;
 import sdk.jassinaturas.communicators.SandboxCommunicator;
-import co.freeside.betamax.Betamax;
-import co.freeside.betamax.MatchRule;
-import co.freeside.betamax.Recorder;
+
+import java.util.List;
+
+import static org.junit.Assert.assertEquals;
 
 public class InvoiceClientTest {
 
-    private final Assinaturas assinaturas = new Assinaturas(new Authentication("SGPA0K0R7O0IVLRPOVLJDKAWYBO1DZF3",
-            "QUJESGM9JU175OGXRFRJIYM0SIFOMIFUYCBWH9WA"), new SandboxCommunicator());
+    private final Assinaturas assinaturas = new Assinaturas(new Authentication("JOSOAPZJ4JI3IQTRUUTIGWQEPRPMDW58",
+            "Q1MSGUKMXXQTKO4W7OHHINJNFYSOCT4FJLJKYXKH"), new SandboxCommunicator());
 
     @Rule
-    public Recorder recorder = new Recorder();
+    public Player player = new Player();
 
     @Play("GET_PAYMENTS_FROM_INVOICE")
     @Test

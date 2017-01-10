@@ -1,10 +1,10 @@
 package sdk.jassinaturas.communicators;
 
-import javax.inject.Named;
-
+import feign.RequestLine;
 import sdk.jassinaturas.clients.attributes.BillingInfo;
 import sdk.jassinaturas.clients.attributes.Customer;
-import feign.RequestLine;
+
+import javax.inject.Named;
 
 public interface CustomerCommunicator {
 

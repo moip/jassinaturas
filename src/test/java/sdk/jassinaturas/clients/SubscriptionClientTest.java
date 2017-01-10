@@ -1,9 +1,8 @@
 package sdk.jassinaturas.clients;
 
-import co.freeside.betamax.Betamax;
-import co.freeside.betamax.MatchRule;
 import com.rodrigosaito.mockwebserver.player.Play;
 import com.rodrigosaito.mockwebserver.player.Player;
+import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 import sdk.jassinaturas.Assinaturas;
@@ -32,11 +31,18 @@ import static org.junit.Assert.fail;
 
 public class SubscriptionClientTest {
 
-    private final Assinaturas assinaturas = new Assinaturas(new Authentication("SGPA0K0R7O0IVLRPOVLJDKAWYBO1DZF3",
-            "QUJESGM9JU175OGXRFRJIYM0SIFOMIFUYCBWH9WA"), new SandboxCommunicator());
+    private final Assinaturas assinaturas = new Assinaturas(new Authentication("JOSOAPZJ4JI3IQTRUUTIGWQEPRPMDW58",
+            "Q1MSGUKMXXQTKO4W7OHHINJNFYSOCT4FJLJKYXKH"), new SandboxCommunicator());
 
     @Rule
-    public Player player = new Player();
+    public Player player;
+
+
+    @Before
+    public void init(){
+        player = new Player();
+    }
+
 
     @Play("ACTIVATE_SUBSCRIPTION")
     @Test
@@ -277,4 +283,6 @@ public class SubscriptionClientTest {
         // updated
         // So, I didn't do any assert
     }
+
+
 }

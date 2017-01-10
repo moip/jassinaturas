@@ -1,8 +1,5 @@
 package sdk.jassinaturas.clients;
 
-import co.freeside.betamax.Betamax;
-import co.freeside.betamax.MatchRule;
-import co.freeside.betamax.Recorder;
 import com.rodrigosaito.mockwebserver.player.Play;
 import com.rodrigosaito.mockwebserver.player.Player;
 import org.junit.Rule;
@@ -24,8 +21,8 @@ import static org.junit.Assert.assertFalse;
 
 public class CouponClientTest {
 
-    private final Assinaturas assinaturas = new Assinaturas(new Authentication("SGPA0K0R7O0IVLRPOVLJDKAWYBO1DZF3",
-            "QUJESGM9JU175OGXRFRJIYM0SIFOMIFUYCBWH9WA"), new SandboxCommunicator());
+    private final Assinaturas assinaturas = new Assinaturas(new Authentication("JOSOAPZJ4JI3IQTRUUTIGWQEPRPMDW58",
+            "Q1MSGUKMXXQTKO4W7OHHINJNFYSOCT4FJLJKYXKH"), new SandboxCommunicator());
 
     @Rule
     public Player player = new Player();

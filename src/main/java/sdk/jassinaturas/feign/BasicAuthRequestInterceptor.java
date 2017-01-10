@@ -21,13 +21,13 @@ package sdk.jassinaturas.feign;
  * @author Rodrigo Saito
  */
 
-import static feign.Util.ISO_8859_1;
-import static feign.Util.checkNotNull;
+import feign.RequestInterceptor;
+import feign.RequestTemplate;
 
 import java.nio.charset.Charset;
 
-import feign.RequestInterceptor;
-import feign.RequestTemplate;
+import static feign.Util.ISO_8859_1;
+import static feign.Util.checkNotNull;
 
 /**
  * An interceptor that adds the request header needed to use HTTP basic

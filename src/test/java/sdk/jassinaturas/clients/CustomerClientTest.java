@@ -1,14 +1,9 @@
 package sdk.jassinaturas.clients;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.fail;
-
-import java.util.List;
-
 import com.rodrigosaito.mockwebserver.player.Play;
+import com.rodrigosaito.mockwebserver.player.Player;
 import org.junit.Rule;
 import org.junit.Test;
-
 import sdk.jassinaturas.Assinaturas;
 import sdk.jassinaturas.clients.attributes.Address;
 import sdk.jassinaturas.clients.attributes.Authentication;
@@ -22,17 +17,19 @@ import sdk.jassinaturas.clients.attributes.State;
 import sdk.jassinaturas.communicators.ProductionCommunicator;
 import sdk.jassinaturas.communicators.SandboxCommunicator;
 import sdk.jassinaturas.exceptions.ApiResponseErrorException;
-import co.freeside.betamax.Betamax;
-import co.freeside.betamax.MatchRule;
-import co.freeside.betamax.Recorder;
+
+import java.util.List;
+
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.fail;
 
 public class CustomerClientTest {
 
-    private final Assinaturas assinaturas = new Assinaturas(new Authentication("SGPA0K0R7O0IVLRPOVLJDKAWYBO1DZF3",
-            "QUJESGM9JU175OGXRFRJIYM0SIFOMIFUYCBWH9WA"), new SandboxCommunicator());
+    private final Assinaturas assinaturas = new Assinaturas(new Authentication("JOSOAPZJ4JI3IQTRUUTIGWQEPRPMDW58",
+            "Q1MSGUKMXXQTKO4W7OHHINJNFYSOCT4FJLJKYXKH"), new SandboxCommunicator());
 
     @Rule
-    public Recorder recorder = new Recorder();
+    public Player player = new Player();
 
 
     @Test

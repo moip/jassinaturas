@@ -23,4 +23,4 @@ interactions:
       Date: Tue, 21 Jan 2014 22:53:35 GMT
       Server: Apache
       Vary: Accept-Encoding
-    body: '{"message":"Erro na requisição","errors":[{"description":"Código do cliente já utilizado. Escolha outro código.","code":"MA33"}]}'
+    body: {"message":"Erro na requisição","errors":[{"description":"Código do cliente já utilizado. Escolha outro código.","code":"MA33"}]}

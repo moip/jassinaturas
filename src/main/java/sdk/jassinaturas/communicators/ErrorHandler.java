@@ -1,13 +1,13 @@
 package sdk.jassinaturas.communicators;
 
+import feign.Response;
+import feign.codec.ErrorDecoder;
+import sdk.jassinaturas.exceptions.ApiResponseErrorException;
+import sdk.jassinaturas.serializers.GsonDeserializer;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Scanner;
-
-import sdk.jassinaturas.exceptions.ApiResponseErrorException;
-import sdk.jassinaturas.serializers.GsonDeserializer;
-import feign.Response;
-import feign.codec.ErrorDecoder;
 
 public class ErrorHandler implements ErrorDecoder {
 

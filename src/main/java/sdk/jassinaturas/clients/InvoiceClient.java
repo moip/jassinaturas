@@ -1,10 +1,10 @@
 package sdk.jassinaturas.clients;
 
-import java.util.List;
-
 import sdk.jassinaturas.clients.attributes.Invoice;
 import sdk.jassinaturas.clients.attributes.Payment;
 import sdk.jassinaturas.communicators.InvoiceCommunicator;
+
+import java.util.List;
 
 public class InvoiceClient {
 

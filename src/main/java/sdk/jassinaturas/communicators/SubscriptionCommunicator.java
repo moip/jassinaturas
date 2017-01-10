@@ -1,9 +1,9 @@
 package sdk.jassinaturas.communicators;
 
-import javax.inject.Named;
-
-import sdk.jassinaturas.clients.attributes.Subscription;
 import feign.RequestLine;
+import sdk.jassinaturas.clients.attributes.Subscription;
+
+import javax.inject.Named;
 
 public interface SubscriptionCommunicator {
 

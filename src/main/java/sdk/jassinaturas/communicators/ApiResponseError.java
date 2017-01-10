@@ -1,9 +1,9 @@
 package sdk.jassinaturas.communicators;
 
-import java.util.List;
-
 import sdk.jassinaturas.clients.attributes.Alerts;
 import sdk.jassinaturas.clients.attributes.Errors;
+
+import java.util.List;
 
 public class ApiResponseError {
 
