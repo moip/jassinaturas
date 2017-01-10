@@ -40,9 +40,9 @@ public class SubscriptionClientTest {
     public void shouldCreateANewSubscription() {
         Subscription toBeCreated = new Subscription();
         toBeCreated
-                .withCode("subscription_with_new_customer_" + System.currentTimeMillis())
+                .withCode("sub_" + System.currentTimeMillis())
                 .withAmount(100)
-                .withPlan(new Plan().withCode("plan001"))
+                .withPlan(new Plan().withCode("plan003"))
                 .withCustomer(
                         new Customer()
                                 .withCode("customer_created_with_subscription_" + System.currentTimeMillis())
@@ -66,19 +66,13 @@ public class SubscriptionClientTest {
         assertEquals("Assinatura criada com sucesso", created.getMessage());
 
         assertEquals(created.getAmount(), 100);
-        assertEquals(created.getPlan().getName(), "Plano de Teste Atualizado");
-        assertEquals(created.getPlan().getCode(), "plan001");
+        assertEquals(created.getPlan().getName(), "Plano Especial");
+        assertEquals(created.getPlan().getCode(), "plan003");
         assertEquals(created.getStatus(), SubscriptionStatus.ACTIVE);
-        assertEquals(created.getInvoice().getAmount(), 1100);
-        assertEquals(created.getInvoice().getId(), 12872);
-        assertEquals(created.getInvoice().getStatus().getDescription(), "Atrasada");
-        assertEquals(created.getInvoice().getStatus().getCode(), 5);
-        assertEquals(1, created.getNextInvoiceDate().getDay());
-        assertEquals(Month.MAY, created.getNextInvoiceDate().getMonth());
-        assertEquals(2014, created.getNextInvoiceDate().getYear());
-        assertEquals(created.getCode(), "subscription_with_new_customer_00001");
+        assertEquals(created.getInvoice().getAmount(), 600);
+        assertEquals(created.getInvoice().getStatus().getDescription(), "Aguardando confirmação");
+        assertEquals(created.getInvoice().getStatus().getCode(), 2);
         assertEquals(created.getCustomer().getEmail(), "teste@teste.com");
-        assertEquals(created.getCustomer().getCode(), "customer_created_with_subscription_0001");
         assertEquals(created.getCustomer().getFullname(), "Danillo Souza");
     }
 
@@ -87,27 +81,23 @@ public class SubscriptionClientTest {
         Subscription toBeCreated = new Subscription();
         toBeCreated.withCode("subscription0000_"+ System.currentTimeMillis())
                 .withAmount(100)
-                .withCustomer(new Customer().withCode("customer000000001"))
-                .withPlan(new Plan().withCode("plan001"));
+                .withCustomer(new Customer().withCode("customer_created_with_subscription_1484075655594"))
+                .withPlan(new Plan().withCode("plan003"));
 
         Subscription created = assinaturas.subscriptions().create(toBeCreated);
 
         assertEquals("Assinatura criada com sucesso", created.getMessage());
 
         assertEquals(created.getAmount(), 100);
-        assertEquals(created.getPlan().getName(), "Plano de Teste Atualizado");
-        assertEquals(created.getPlan().getCode(), "plan001");
+        assertEquals(created.getPlan().getName(), "Plano Especial");
+        assertEquals(created.getPlan().getCode(), "plan003");
         assertEquals(created.getStatus(), SubscriptionStatus.ACTIVE);
-        assertEquals(created.getInvoice().getAmount(), 1100);
-        assertEquals(created.getInvoice().getId(), 12873);
-        assertEquals(created.getInvoice().getStatus().getDescription(), "Atrasada");
-        assertEquals(created.getInvoice().getStatus().getCode(), 5);
-        assertEquals(1, created.getNextInvoiceDate().getDay());
-        assertEquals(Month.MAY, created.getNextInvoiceDate().getMonth());
-        assertEquals(2014, created.getNextInvoiceDate().getYear());
-        assertEquals(created.getCode(), "subscription00001");
+        assertEquals(created.getInvoice().getAmount(), 600);
+        assertEquals(created.getInvoice().getStatus().getDescription(), "Aguardando confirmação");
+        assertEquals(created.getInvoice().getStatus().getCode(), 2);
+        assertNotNull(created.getCode());
         assertEquals(created.getCustomer().getEmail(), "teste@teste.com");
-        assertEquals(created.getCustomer().getCode(), "customer000000001");
+        assertEquals(created.getCustomer().getCode(), "customer_created_with_subscription_1484075655594");
         assertEquals(created.getCustomer().getFullname(), "Danillo Souza");
     }
 
@@ -162,9 +152,6 @@ public class SubscriptionClientTest {
 
         Subscription subscription = assinaturas.subscriptions().show("Teste_1484071813");
 
-
-        System.out.println(subscription);
-
         assertEquals(10, subscription.getCreationDate().getMinute());
         assertEquals(14, subscription.getCreationDate().getSecond());
         assertEquals(Month.JANUARY, subscription.getCreationDate().getMonth());
@@ -188,21 +175,6 @@ public class SubscriptionClientTest {
         assertEquals(24, subscription.getExpirationDate().getDay());
     }
 
-
-    @Test
-    public void shouldUpdateASubscription() {
-
-        Subscription toUpdate = new Subscription();
-        toUpdate.withCode("Teste_1484071813").withPlan(new Plan().withCode("plano01")).withAmount(990);
-
-        Subscription subscription = assinaturas.subscriptions().update(toUpdate);
-
-        // There isn't any response from Moip Assinaturas when subscription is
-        // updated
-        // So, I didn't do any assert
-
-    }
-
     @Test
     public void shouldGetResultFromToString() {
         String subscription = assinaturas.subscriptions().show("Teste_1484071813").toString();
@@ -211,19 +183,5 @@ public class SubscriptionClientTest {
                 "Subscription [amount=990, code=Teste_1484071813, creationDate=CreationDate [day=10, hour=16, minute=10, month=1, second=14, year=2017], customer=Customer [address=null, billingInfo=null, birthdate=null, code=1484071813, cpf=null, customers=null, email=1484071813@exemplo.com.br, fullname=Jose silva, message=null, phoneAreaCode=null, phoneNumber=null, birthdateDay=0, birthdateMonth=0, birthdateYear=0], expirationDate=ExpirationDate [day=24, month=APRIL, year=2020], invoice=null, invoices=null, message=null, nextInvoiceDate=NextInvoiceDate [day=20, month=4, year=2017], plan=Plan [alerts=null, amount=0, billingCycles=0, code=plan003, description=null, interval=null, maxQty=0, message=null, name=Plano Especial, plans=null, setupFee=0, status=null, trial=null], status=CANCELED, subscriptions=null, coupon=null]",
                 subscription);
     }
-
-    @Test
-    public void addingCouponToASubscription() {
-        Subscription toUpdate = new Subscription();
-        toUpdate.withCode("xpto_00")
-                .withPlan(new Plan().withCode("plan003"));
-
-        Subscription subscription = assinaturas.subscriptions().update(toUpdate);
-
-        // There isn't any response from Moip Assinaturas when subscription is
-        // updated
-        // So, I didn't do any assert
-    }
-
 
 }

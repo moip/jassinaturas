@@ -28,7 +28,7 @@ public class ErrorHandler implements ErrorDecoder {
             ApiResponseError error = gson.deserialize(json, ApiResponseError.class);
             throw new ApiResponseErrorException(error);
         } catch (IOException e) {
-            System.out.println("Error when parsin response" + e);
+            System.out.println("Error when parsing response" + e);
         }
       
       return new ApiResponseErrorException("Http Status 400 happened");
