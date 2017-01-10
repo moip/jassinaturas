@@ -15,6 +15,7 @@ import sdk.jassinaturas.clients.attributes.Duration;
 import sdk.jassinaturas.clients.attributes.DurationType;
 import sdk.jassinaturas.clients.attributes.ExpirationDate;
 import sdk.jassinaturas.clients.attributes.Month;
+import sdk.jassinaturas.communicators.LocalCommunicator;
 import sdk.jassinaturas.communicators.SandboxCommunicator;
 
 import static org.junit.Assert.assertEquals;
@@ -25,15 +26,6 @@ public class CouponClientTest {
     private final Assinaturas assinaturas = new Assinaturas(new Authentication("JOSOAPZJ4JI3IQTRUUTIGWQEPRPMDW58",
             "Q1MSGUKMXXQTKO4W7OHHINJNFYSOCT4FJLJKYXKH"), new SandboxCommunicator());
 
-    @Rule
-    public Player player;
-
-    @Before
-    public void init(){
-        player = new Player();
-    }
-
-    @Play("ACTIVATE_COUPON")
     @Test
     public void shouldActivateCoupon() {
         Coupon coupon = assinaturas.coupons().activate("jassinaturas_coupon_01");
@@ -41,20 +33,18 @@ public class CouponClientTest {
         assertEquals(CouponStatus.ACTIVE, coupon.getStatus());
     }
 
-    @Play("INACTIVATE_COUPON")
     @Test
     public void shouldInactivateCoupon() {
-        Coupon coupon = assinaturas.coupons().activate("jassinaturas_coupon_01");
+        Coupon coupon = assinaturas.coupons().inactivate("jassinaturas_coupon_01");
 
         assertEquals(CouponStatus.INACTIVE, coupon.getStatus());
     }
 
-    @Play("CREATE_COUPON")
     @Test
     public void createCoupon() {
         Coupon toBeCreated = new Coupon();
 
-        toBeCreated.withCode("jassinaturas_coupon_01")
+        toBeCreated.withCode("jassinaturas_coupon_" + System.currentTimeMillis())
                 .withName("JAssinaturas")
                 .withDescription("Coupon for test control")
                 .withDiscount(new Discount()
@@ -72,7 +62,6 @@ public class CouponClientTest {
 
         Coupon coupon = assinaturas.coupons().create(toBeCreated);
 
-        assertEquals("jassinaturas_coupon_01", coupon.getCode());
         assertEquals("JAssinaturas", coupon.getName());
         assertEquals("Coupon for test control", coupon.getDescription());
         assertEquals(1000, coupon.getDiscount().getValue());
@@ -80,16 +69,10 @@ public class CouponClientTest {
         assertEquals(CouponStatus.ACTIVE, coupon.getStatus());
         assertEquals(DurationType.REPEATING, coupon.getDuration().getType());
         assertEquals(1, coupon.getDuration().getOccurrences());
-        assertEquals(10, coupon.getExpirationDate().getDay());
         assertEquals(Month.OCTOBER, coupon.getExpirationDate().getMonth());
         assertEquals(2020, coupon.getExpirationDate().getYear());
         assertEquals(1000, coupon.getMaxRedemptions().intValue());
         assertFalse(coupon.inUse());
-        assertEquals(21, coupon.getCreationDate().getDay());
-        assertEquals(Month.JUNE, coupon.getCreationDate().getMonth());
-        assertEquals(2015, coupon.getCreationDate().getYear());
-        assertEquals(21, coupon.getCreationDate().getHour());
-        assertEquals(51, coupon.getCreationDate().getMinute());
-        assertEquals(43, coupon.getCreationDate().getSecond());
     }
+
 }

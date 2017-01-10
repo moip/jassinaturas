@@ -21,19 +21,13 @@ import sdk.jassinaturas.exceptions.ApiResponseErrorException;
 import java.util.List;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.fail;
 
 public class CustomerClientTest {
 
     private final Assinaturas assinaturas = new Assinaturas(new Authentication("JOSOAPZJ4JI3IQTRUUTIGWQEPRPMDW58",
             "Q1MSGUKMXXQTKO4W7OHHINJNFYSOCT4FJLJKYXKH"), new SandboxCommunicator());
-
-    @Rule
-    public Player player = new Player();
-
-    public CustomerClientTest() {
-        player.setPort(9000);
-    }
 
     @Test
     public void shouldCreateANewCustomer() {
@@ -59,11 +53,10 @@ public class CustomerClientTest {
         assertEquals("Cliente criado com sucesso", created.getMessage());
     }
 
-    @Play("CREATE_CUSTOMER_WITHOUT_CREDITCARD")
     @Test
     public void shouldCreateANewCustomerWithoutCreditCard() {
         Customer toCreate = new Customer();
-        toCreate.withCode("customer000000001_no_creditCard")
+        toCreate.withCode("customer_without_credit_card_"+System.currentTimeMillis())
                 .withBirthdate(new Birthdate().withDay(13).withMonth(Month.OCTOBER).withYear(1989))
                 .withCpf("12312312312")
                 .withEmail("teste@teste.com")
@@ -80,19 +73,17 @@ public class CustomerClientTest {
         assertEquals("Cliente criado com sucesso", created.getMessage());
     }
 
-    @Play("LIST_ALL_CUSTOMERS")
     @Test
     public void shouldListAllCustomers() {
         List<Customer> customers = assinaturas.customers().list();
-        assertEquals(9, customers.size());
-        assertEquals(1, customers.get(0).getBirthdate().getBirthdateMonth());
-        assertEquals(18, customers.get(0).getBirthdate().getBirthdateDay());
-        assertEquals(2014, customers.get(0).getBirthdate().getBirthdateYear());
+        assertNotNull(customers);
+        assertEquals(10, customers.get(0).getBirthdate().getBirthdateMonth());
+        assertEquals(13, customers.get(0).getBirthdate().getBirthdateDay());
+        assertEquals(1989, customers.get(0).getBirthdate().getBirthdateYear());
         assertEquals("11", customers.get(0).getPhoneAreaCode());
         assertEquals("912341234", customers.get(0).getPhoneNumber());
         assertEquals("teste@teste.com", customers.get(0).getEmail());
         assertEquals("12312312312", customers.get(0).getCpf());
-        assertEquals("customer0001", customers.get(0).getCode());
         assertEquals("Danillo Souza", customers.get(0).getFullname());
     }
 
@@ -130,37 +121,36 @@ public class CustomerClientTest {
         Customer customer = assinaturas.customers().show("customer000000001");
 
         assertEquals("customer000000001", customer.getCode());
-        assertEquals("Danillo Souza", customer.getFullname());
-        assertEquals("teste@teste.com", customer.getEmail());
-        assertEquals("12312312312", customer.getCpf());
+        assertEquals("Nome Sobrenome", customer.getFullname());
+        assertEquals("nome@exemplo.com.br", customer.getEmail());
+        assertEquals("22222222222", customer.getCpf());
         assertEquals("11", customer.getPhoneAreaCode());
-        assertEquals("912341234", customer.getPhoneNumber());
-        assertEquals(10, customer.getBirthdate().getBirthdateMonth());
-        assertEquals(13, customer.getBirthdate().getBirthdateDay());
-        assertEquals(1989, customer.getBirthdate().getBirthdateYear());
-        assertEquals("9 de Julho", customer.getAddress().getStreet());
-        assertEquals("1000", customer.getAddress().getNumber());
-        assertEquals("Apto", customer.getAddress().getComplement());
-        assertEquals("Centro", customer.getAddress().getDistrict());
+        assertEquals("934343434", customer.getPhoneNumber());
+        assertEquals(4, customer.getBirthdate().getBirthdateMonth());
+        assertEquals(26, customer.getBirthdate().getBirthdateDay());
+        assertEquals(1980, customer.getBirthdate().getBirthdateYear());
+        assertEquals("Rua Nome da Rua", customer.getAddress().getStreet());
+        assertEquals("100", customer.getAddress().getNumber());
+        assertEquals("Casa", customer.getAddress().getComplement());
+        assertEquals("Nome do Bairro", customer.getAddress().getDistrict());
         assertEquals("São Paulo", customer.getAddress().getCity());
         assertEquals("SP", customer.getAddress().getState().toString());
         assertEquals("BRA", customer.getAddress().getCountry().toString());
-        assertEquals("10012345", customer.getAddress().getZipcode());
+        assertEquals("05015010", customer.getAddress().getZipcode());
         assertEquals("VISA", customer.getBillingInfo().getCreditCards().get(0).getBrand());
         assertEquals("411111", customer.getBillingInfo().getCreditCards().get(0).getFirstSixDigits());
         assertEquals("1111", customer.getBillingInfo().getCreditCards().get(0).getLastFourDigits());
-        assertEquals("10", customer.getBillingInfo().getCreditCards().get(0).getExpirationMonth());
+        assertEquals("04", customer.getBillingInfo().getCreditCards().get(0).getExpirationMonth());
         assertEquals("18", customer.getBillingInfo().getCreditCards().get(0).getExpirationYear());
-        assertEquals("Danillo Souza", customer.getBillingInfo().getCreditCards().get(0).getHolderName());
-        assertEquals("teste-teste00-1teste-t35t3-139015", customer.getBillingInfo().getCreditCards().get(0).getVault());
+        assertEquals("Nome Completo", customer.getBillingInfo().getCreditCards().get(0).getHolderName());
+        assertEquals("caca7794-c088-4c08-8089-88d106c3b6c4", customer.getBillingInfo().getCreditCards().get(0).getVault());
 
     }
 
-    @Play("UPDATE_CREDITCARD")
     @Test
     public void shouldUpdateACreditCard() {
         Customer toUpdate = new Customer();
-        toUpdate.withCode("customer0001_toBeUpdated").withBillingInfo(
+        toUpdate.withCode("customer0000000011484070865657").withBillingInfo(
                 new BillingInfo().withCreditCard(new CreditCard().withExpirationMonth("10").withExpirationYear("18")
                         .withHolderName("Danillo Souza").withNumber("4111111111111111")));
 
@@ -170,11 +160,10 @@ public class CustomerClientTest {
 
     }
 
-    @Play("UPDATE_CUSTOMER")
     @Test
     public void shouldUpdateACustomer() {
         Customer toUpdate = new Customer();
-        toUpdate.withCode("customer0001_toBeUpdated")
+        toUpdate.withCode("customer0000000011484070865657")
                 .withBirthdate(new Birthdate().withDay(13).withMonth(Month.OCTOBER).withYear(1989))
                 .withCpf("32132132132")
                 .withEmail("etset@etset.com")
@@ -193,42 +182,12 @@ public class CustomerClientTest {
 
     }
 
-    //@Play("CREATE_CUSTOMER_PRODUCTION")
     @Test
-    public void shouldUseProductionEnvironmentToCreateACustomer() {
-        Assinaturas assinaturas = new Assinaturas(new Authentication("SGPA0K0R7O0IVLRPOVLJDKAWYBO1DZF3",
-                "QUJESGM9JU175OGXRFRJIYM0SIFOMIFUYCBWH9WA"), new ProductionCommunicator());
-
-        Customer toCreate = new Customer();
-        toCreate.withCode("customer_jassinaturas_production_01")
-                .withBirthdate(new Birthdate().withDay(13).withMonth(Month.OCTOBER).withYear(1989))
-                .withCpf("12312312312")
-                .withEmail("teste@teste.com")
-                .withFullname("Danillo Souza")
-                .withPhoneAreaCode("11")
-                .withPhoneNumber("912341234")
-                .withAddress(
-                        new Address().withCity("São Paulo").withComplement("Apto").withCountry(Country.BRA)
-                                .withDistrict("Centro").withNumber("1000").withState(State.SP).withStreet("9 de Julho")
-                                .withZipcode("10012345"))
-                .withBillingInfo(
-                        new BillingInfo().withCreditCard(new CreditCard().withExpirationMonth("10")
-                                .withExpirationYear("18").withHolderName("Danillo Souza")
-                                .withNumber("4111111111111111")));
-
-        Customer created = assinaturas.customers().create(toCreate);
-
-        assertEquals("Cliente criado com sucesso", created.getMessage());
-    }
-
-
-    @Test
-    @Play("GET_SINGLE_CUSTOMER")
     public void shouldGetResultFromToString() {
         String customer = assinaturas.customers().show("customer000000001").toString();
 
         assertEquals(
-                "Customer [address=Address [city=São Paulo, complement=Apto, country=BRA, district=Centro, number=1000, state=SP, street=9 de Julho, zipcode=10012345], billingInfo=BillingInfo [creditCard=null, creditCards=[CreditCard [brand=VISA, expirationMonth=10, expirationYear=18, firstSixDigits=411111, holderName=Danillo Souza, lastFourDigits=1111, number=null, vault=teste-teste00-1teste-t35t3-139015]]], birthdate=null, code=customer000000001, cpf=12312312312, customers=null, email=teste@teste.com, fullname=Danillo Souza, message=null, phoneAreaCode=11, phoneNumber=912341234, birthdateDay=13, birthdateMonth=10, birthdateYear=1989]",
+                "Customer [address=Address [city=São Paulo, complement=Casa, country=BRA, district=Nome do Bairro, number=100, state=SP, street=Rua Nome da Rua, zipcode=05015010], billingInfo=BillingInfo [creditCard=null, creditCards=[CreditCard [brand=VISA, expirationMonth=04, expirationYear=18, firstSixDigits=411111, holderName=Nome Completo, lastFourDigits=1111, number=null, vault=caca7794-c088-4c08-8089-88d106c3b6c4]]], birthdate=null, code=customer000000001, cpf=22222222222, customers=null, email=nome@exemplo.com.br, fullname=Nome Sobrenome, message=null, phoneAreaCode=11, phoneNumber=934343434, birthdateDay=26, birthdateMonth=4, birthdateYear=1980]",
                 customer);
 
     }
