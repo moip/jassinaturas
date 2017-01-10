@@ -1,7 +1,7 @@
 !play
 name: CREATE_COUPON
 interactions:
-  request:
+ - request:
     method: POST
     uri: https://sandbox.moip.com.br/assinaturas/v1/coupons
     headers:
@@ -15,7 +15,7 @@ interactions:
       Host: sandbox.moip.com.br
       User-Agent: Java/1.7.0_45
     body: '{"code":"jassinaturas_coupon_01","name":"JAssinaturas","description":"Coupon for test control","discount":{"type":"PERCENT","value":1000},"status":"ACTIVE","duration":{"type":"REPEATING","occurrences":1},"max_redemptions":1000,"expiration_date":{"day":10,"month":10,"year":2020}}'
-  response:
+ - response:
     status: 201
     headers:
       Content-Type: application/json

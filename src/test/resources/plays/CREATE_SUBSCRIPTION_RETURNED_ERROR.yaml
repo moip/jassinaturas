@@ -1,8 +1,7 @@
 !play
 name: CREATE_SUBSCRIPTION_RETURNED_ERROR
 interactions:
-- recorded: 2014-01-22T01:02:44.428Z
-  request:
+ - request:
     method: POST
     uri: https://sandbox.moip.com.br/assinaturas/v1/subscriptions?new_customer=false
     headers:
@@ -16,7 +15,7 @@ interactions:
       Host: sandbox.moip.com.br
       User-Agent: Java/1.7.0_45
     body: '{"amount":100,"code":"subscription00001","customer":{"birthdate_day":0,"birthdate_month":0,"birthdate_year":0,"code":"customer000000001"},"plan":{"amount":0,"billing_cycles":0,"code":"plan001","max_qty":0,"setup_fee":0}}'
-  response:
+ - response:
     status: 400
     headers:
       Content-Type: application/json

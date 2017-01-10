@@ -1,7 +1,7 @@
 !play
 name: GET_SINGLE_INVOICE
 interactions:
-  request:
+ - request:
     method: GET
     uri: https://sandbox.moip.com.br/assinaturas/v1/invoices/12872
     headers:
@@ -13,7 +13,7 @@ interactions:
       Content-Type: application/json; charset=utf-8
       Host: sandbox.moip.com.br
       User-Agent: Java/1.7.0_45
-  response:
+ - response:
     status: 200
     headers:
       Content-Type: application/json
@@ -22,8 +22,7 @@ interactions:
       Vary: Accept-Encoding
     body: '{"amount":1100,"creation_date":{"minute":0,"second":28,"month":1,"year":2014,"hour":23,"day":21},"id":12872,"plan":{"name":"Plano de Teste Atualizado","code":"plan001"},"items":[{"amount":100,"type":"Valor da assinatura"},{"amount":1000,"type":"Taxa
       de contratação"}],"status":{"description":"Atrasada","code":5},"subscription_code":"subscription_with_new_customer_00001","occurrence":1,"customer":{"code":"customer_created_with_subscription_0001","fullname":"Danillo Souza"}}'
-- recorded: 2014-08-29T14:25:15.009Z
-  request:
+ - request:
     method: GET
     uri: https://sandbox.moip.com.br/assinaturas/v1/invoices/12872
     headers:
@@ -35,7 +34,7 @@ interactions:
       Content-Type: application/json; charset=utf-8
       Host: sandbox.moip.com.br
       User-Agent: Java/1.7.0_05
-  response:
+ - response:
     status: 200
     headers:
       Content-Type: application/json

@@ -1,7 +1,7 @@
 !play
 name: UPDATE_CUSTOMER
 interactions:
-  request:
+ - request:
     method: PUT
     uri: https://sandbox.moip.com.br/assinaturas/v1/customers/customer0001_toBeUpdated
     headers:
@@ -16,7 +16,7 @@ interactions:
       User-Agent: Java/1.7.0_45
     body: '{"address":{"city":"São Paulo","complement":"Apto","country":"BRA","district":"Centro","number":"1000","state":"SP","street":"9 de Julho","zipcode":"10012345"},"code":"customer0001_toBeUpdated","cpf":"32132132132","email":"etset@etset.com","fullname":"Souza
       Danillo","phone_area_code":"11","phone_number":"912341234","birthdate_day":13,"birthdate_month":10,"birthdate_year":1989}'
-  response:
+ - response:
     status: 200
     headers:
       Content-Type: text/plain; charset=UTF-8

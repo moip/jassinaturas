@@ -1,7 +1,7 @@
 !play
 name: UPDATE_CREDITCARD
 interactions:
-  request:
+ - request:
     method: PUT
     uri: https://sandbox.moip.com.br/assinaturas/v1/customers/customer0001_toBeUpdated/billing_infos
     headers:
@@ -15,7 +15,7 @@ interactions:
       Host: sandbox.moip.com.br
       User-Agent: Java/1.7.0_45
     body: '{"credit_card":{"expiration_month":"10","expiration_year":"18","holder_name":"Danillo Souza","number":"4111111111111111"}}'
-  response:
+ - response:
     status: 200
     headers:
       Content-Type: application/json

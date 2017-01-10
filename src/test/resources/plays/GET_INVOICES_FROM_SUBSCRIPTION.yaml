@@ -1,7 +1,7 @@
 !play
 name: GET_INVOICES_FROM_SUBSCRIPTION
 interactions:
-  request:
+ - request:
     method: GET
     uri: https://sandbox.moip.com.br/assinaturas/v1/subscriptions/subscription00001/invoices
     headers:
@@ -13,7 +13,7 @@ interactions:
       Content-Type: application/json; charset=utf-8
       Host: sandbox.moip.com.br
       User-Agent: Java/1.7.0_45
-  response:
+ - response:
     status: 200
     headers:
       Content-Type: application/json

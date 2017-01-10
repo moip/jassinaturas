@@ -3,7 +3,7 @@ name: CREATE_CUSTOMER
 interactions:
   request:
     method: POST
-    uri: https://sandbox.moip.com.br/assinaturas/v1/customers?new_vault=true
+    uri: /assinaturas/v1/customers?new_vault=true
     headers:
       Accept: application/json
       Accept-Charset: utf-8
@@ -24,4 +24,4 @@ interactions:
       Location: https://sandbox.moip.com.br/assinaturas/v1/customers/customer000000001
       Server: Apache
       Vary: Accept-Encoding
-    body: {"message":"Cliente criado com sucesso"}
+    body: '{"message":"Cliente criado com sucesso"}'

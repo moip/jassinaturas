@@ -2,7 +2,6 @@ package sdk.jassinaturas.clients;
 
 import com.rodrigosaito.mockwebserver.player.Play;
 import com.rodrigosaito.mockwebserver.player.Player;
-import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 import sdk.jassinaturas.Assinaturas;
@@ -21,6 +20,7 @@ import sdk.jassinaturas.clients.attributes.Plan;
 import sdk.jassinaturas.clients.attributes.State;
 import sdk.jassinaturas.clients.attributes.Subscription;
 import sdk.jassinaturas.clients.attributes.SubscriptionStatus;
+import sdk.jassinaturas.communicators.LocalCommunicator;
 import sdk.jassinaturas.communicators.SandboxCommunicator;
 import sdk.jassinaturas.exceptions.ApiResponseErrorException;
 
@@ -32,17 +32,14 @@ import static org.junit.Assert.fail;
 public class SubscriptionClientTest {
 
     private final Assinaturas assinaturas = new Assinaturas(new Authentication("JOSOAPZJ4JI3IQTRUUTIGWQEPRPMDW58",
-            "Q1MSGUKMXXQTKO4W7OHHINJNFYSOCT4FJLJKYXKH"), new SandboxCommunicator());
+            "Q1MSGUKMXXQTKO4W7OHHINJNFYSOCT4FJLJKYXKH"), new LocalCommunicator());;
 
     @Rule
-    public Player player;
+    public Player player = new Player();;
 
-
-    @Before
-    public void init(){
-        player = new Player();
+    public SubscriptionClientTest() {
+        player.setPort(9000);
     }
-
 
     @Play("ACTIVATE_SUBSCRIPTION")
     @Test

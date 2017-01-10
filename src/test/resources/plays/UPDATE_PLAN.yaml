@@ -1,7 +1,7 @@
 !play
 name: UPDATE_PLAN
 interactions:
-  request:
+ - request:
     method: PUT
     uri: https://sandbox.moip.com.br/assinaturas/v1/plans/plan001
     headers:
@@ -15,7 +15,7 @@ interactions:
       Host: sandbox.moip.com.br
       User-Agent: Java/1.7.0_45
     body: '{"code":"plan001","name":"Plano de Teste Atualizado","description":"Plano de Teste Atualizado","amount":10000,"setup_fee":1000,"max_qty":100,"status":"INACTIVE","interval":{"unit":"DAY","length":100},"billing_cycles":10,"trial":{"days":5,"enabled":false}}'
-  response:
+ - response:
     status: 200
     headers:
       Content-Type: text/plain; charset=UTF-8
@@ -23,8 +23,7 @@ interactions:
       Server: Apache
       Vary: Accept-Encoding
     body: ''
-- recorded: 2014-01-13T01:06:47.942Z
-  request:
+ - request:
     method: PUT
     uri: https://sandbox.moip.com.br/assinaturas/v1/plans/plan001
     headers:
@@ -38,7 +37,7 @@ interactions:
       Host: sandbox.moip.com.br
       User-Agent: Java/1.7.0_45
     body: '{"amount":10000,"billing_cycles":10,"code":"plan001","description":"Plano de Teste Atualizado","interval":{"unit":"DAY","length":100},"max_qty":100,"name":"Plano de Teste Atualizado","setup_fee":1000,"status":"INACTIVE","trial":{"days":5,"enabled":false}}'
-  response:
+ - response:
     status: 200
     headers:
       Content-Type: text/plain; charset=UTF-8

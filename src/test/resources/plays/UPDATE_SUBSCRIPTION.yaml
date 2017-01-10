@@ -1,7 +1,7 @@
 !play
 name: UPDATE_SUBSCRIPTION
 interactions:
-  request:
+ - request:
     method: PUT
     uri: https://sandbox.moip.com.br/assinaturas/v1/subscriptions/assinatura46
     headers:
@@ -15,7 +15,7 @@ interactions:
       Host: sandbox.moip.com.br
       User-Agent: Java/1.7.0_45
     body: '{"amount":990,"code":"assinatura46","next_invoice_date":{"day":20,"month":10,"year":2015},"plan":{"amount":0,"billing_cycles":0,"code":"plano01","max_qty":0,"setup_fee":0}}'
-  response:
+ - response:
     status: 200
     headers:
       Content-Type: text/plain; charset=UTF-8

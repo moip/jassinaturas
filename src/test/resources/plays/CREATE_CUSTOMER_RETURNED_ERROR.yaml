@@ -1,7 +1,7 @@
 !play
 name: CREATE_CUSTOMER_RETURNED_ERROR
 interactions:
-  request:
+ - request:
     method: POST
     uri: https://sandbox.moip.com.br/assinaturas/v1/customers?new_vault=false
     headers:
@@ -16,7 +16,7 @@ interactions:
       User-Agent: Java/1.7.0_45
     body: '{"address":{"city":"São Paulo","complement":"Apto","country":"BRA","district":"Centro","number":"1000","state":"SP","street":"9 de Julho","zipcode":"10012345"},"birthdate_day":13,"birthdate_month":10,"birthdate_year":1989,"code":"customer000000001_no_creditCard","cpf":"12312312312","email":"teste@teste.com","fullname":"Danillo
       Souza","phone_area_code":"11","phone_number":"912341234"}'
-  response:
+ - response:
     status: 400
     headers:
       Content-Type: application/json

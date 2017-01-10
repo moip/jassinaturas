@@ -1,7 +1,7 @@
 !play
 name: GET_PAYMENTS_FROM_INVOICE
 interactions:
-  request:
+ - request:
     method: GET
     uri: https://sandbox.moip.com.br/assinaturas/v1/invoices/12872/payments
     headers:
@@ -13,7 +13,7 @@ interactions:
       Content-Type: application/json; charset=utf-8
       Host: sandbox.moip.com.br
       User-Agent: Java/1.7.0_45
-  response:
+ - response:
     status: 200
     headers:
       Content-Type: application/json

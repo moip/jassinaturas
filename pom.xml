@@ -3,9 +3,23 @@
          xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
     <modelVersion>4.0.0</modelVersion>
+
     <groupId>br.com.moip</groupId>
     <artifactId>jassinaturas</artifactId>
     <version>1.1.0</version>
+
+    <distributionManagement>
+        <snapshotRepository>
+            <id>central</id>
+            <name>moip-snapshots</name>
+            <url>https://moip.artifactoryonline.com/moip/libs-snapshot-local</url>
+        </snapshotRepository>
+        <repository>
+            <id>central</id>
+            <name>moip-releases</name>
+            <url>https://moip.artifactoryonline.com/moip/libs-release-local</url>
+        </repository>
+    </distributionManagement>
 
     <licenses>
         <license>

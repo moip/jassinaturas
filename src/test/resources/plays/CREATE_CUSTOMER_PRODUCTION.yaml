@@ -1,7 +1,7 @@
 !play
 name: CREATE_CUSTOMER_PRODUCTION
 interactions:
-  request:
+ - request:
     method: POST
     uri: https://api.moip.com.br/assinaturas/v1/customers?new_vault=true
     headers:
@@ -16,7 +16,7 @@ interactions:
       User-Agent: Java/1.7.0_45
     body: '{"address":{"city":"São Paulo","complement":"Apto","country":"BRA","district":"Centro","number":"1000","state":"SP","street":"9 de Julho","zipcode":"10012345"},"billing_info":{"credit_card":{"expiration_month":"10","expiration_year":"18","holder_name":"Danillo
       Souza","number":"4111111111111111"}},"code":"customer_jassinaturas_production_01","cpf":"12312312312","email":"teste@teste.com","fullname":"Danillo Souza","phone_area_code":"11","phone_number":"912341234","birthdate_day":13,"birthdate_month":10,"birthdate_year":1989}'
-  response:
+ - response:
     status: 201
     headers:
       Content-Type: application/json

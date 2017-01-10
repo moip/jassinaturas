@@ -31,11 +31,14 @@ public class CustomerClientTest {
     @Rule
     public Player player = new Player();
 
+    public CustomerClientTest() {
+        player.setPort(9000);
+    }
 
     @Test
     public void shouldCreateANewCustomer() {
         Customer toCreate = new Customer();
-        toCreate.withCode("customer000000001")
+        toCreate.withCode("customer000000001" + System.currentTimeMillis())
                 .withBirthdate(new Birthdate().withDay(13).withMonth(Month.OCTOBER).withYear(1989))
                 .withCpf("12312312312")
                 .withEmail("teste@teste.com")
@@ -190,7 +193,7 @@ public class CustomerClientTest {
 
     }
 
-    @Play("CREATE_CUSTOMER_PRODUCTION")
+    //@Play("CREATE_CUSTOMER_PRODUCTION")
     @Test
     public void shouldUseProductionEnvironmentToCreateACustomer() {
         Assinaturas assinaturas = new Assinaturas(new Authentication("SGPA0K0R7O0IVLRPOVLJDKAWYBO1DZF3",
@@ -218,8 +221,9 @@ public class CustomerClientTest {
         assertEquals("Cliente criado com sucesso", created.getMessage());
     }
 
-    @Play("GET_SINGLE_CUSTOMER")
+
     @Test
+    @Play("GET_SINGLE_CUSTOMER")
     public void shouldGetResultFromToString() {
         String customer = assinaturas.customers().show("customer000000001").toString();
 

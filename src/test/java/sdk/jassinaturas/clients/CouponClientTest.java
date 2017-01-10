@@ -2,6 +2,7 @@ package sdk.jassinaturas.clients;
 
 import com.rodrigosaito.mockwebserver.player.Play;
 import com.rodrigosaito.mockwebserver.player.Player;
+import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 import sdk.jassinaturas.Assinaturas;
@@ -25,10 +26,11 @@ public class CouponClientTest {
             "Q1MSGUKMXXQTKO4W7OHHINJNFYSOCT4FJLJKYXKH"), new SandboxCommunicator());
 
     @Rule
-    public Player player = new Player();
+    public Player player;
 
-    public CouponClientTest() {
-        player.setPort(9000);
+    @Before
+    public void init(){
+        player = new Player();
     }
 
     @Play("ACTIVATE_COUPON")
