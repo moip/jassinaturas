@@ -15,9 +15,9 @@ API documentation is available at: http://moiplabs.github.io/assinaturas-docs/ap
 # Maven dependency
 ```java
 <dependency>
-  <groupId>com.github.paniko0</groupId>
-  <artifactId>jassinaturas</artifactId>
-  <version>1.1.0</version>
+   <groupId>br.com.moip</groupId>
+   <artifactId>jassinaturas</artifactId>
+   <version>1.1.0</version>
 </dependency>
 ```
 
