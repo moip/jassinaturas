@@ -1,9 +1,6 @@
 package sdk.jassinaturas.clients;
 
-import com.rodrigosaito.mockwebserver.player.Play;
-import com.rodrigosaito.mockwebserver.player.Player;
 import org.junit.Assert;
-import org.junit.Rule;
 import org.junit.Test;
 import sdk.jassinaturas.Assinaturas;
 import sdk.jassinaturas.clients.attributes.Authentication;
@@ -12,7 +9,6 @@ import sdk.jassinaturas.clients.attributes.Plan;
 import sdk.jassinaturas.clients.attributes.PlanStatus;
 import sdk.jassinaturas.clients.attributes.Trial;
 import sdk.jassinaturas.clients.attributes.Unit;
-import sdk.jassinaturas.communicators.LocalCommunicator;
 import sdk.jassinaturas.communicators.ProductionCommunicator;
 import sdk.jassinaturas.communicators.SandboxCommunicator;
 import sdk.jassinaturas.exceptions.ApiResponseErrorException;
@@ -59,7 +55,6 @@ public class PlanClientTest {
         // So, I didn't do any assert
     }
 
-    @Play("LIST_ALL_PLANS")
     @Test
     public void shouldListAllPlans() {
         List<Plan> plans = assinaturas.plans().list();

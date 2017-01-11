@@ -7,7 +7,6 @@ import feign.Feign;
 import feign.gson.GsonDecoder;
 import feign.gson.GsonEncoder;
 import sdk.jassinaturas.clients.attributes.Authentication;
-import sdk.jassinaturas.feign.BasicAuthRequestInterceptor;
 import sdk.jassinaturas.feign.FixedHeadersInterceptor;
 
 public class LocalCommunicator implements Communicator {

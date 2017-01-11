@@ -1,15 +1,11 @@
 package sdk.jassinaturas.clients;
 
-import com.rodrigosaito.mockwebserver.player.Play;
-import com.rodrigosaito.mockwebserver.player.Player;
-import org.junit.Rule;
 import org.junit.Test;
 import sdk.jassinaturas.Assinaturas;
 import sdk.jassinaturas.clients.attributes.Authentication;
 import sdk.jassinaturas.clients.attributes.Invoice;
 import sdk.jassinaturas.clients.attributes.Month;
 import sdk.jassinaturas.clients.attributes.Payment;
-import sdk.jassinaturas.communicators.LocalCommunicator;
 import sdk.jassinaturas.communicators.SandboxCommunicator;
 
 import java.util.List;

@@ -1,26 +1,21 @@
 package sdk.jassinaturas.clients;
 
-import com.rodrigosaito.mockwebserver.player.Play;
-import com.rodrigosaito.mockwebserver.player.Player;
-import org.junit.Rule;
 import org.junit.Test;
 import sdk.jassinaturas.Assinaturas;
 import sdk.jassinaturas.clients.attributes.Address;
 import sdk.jassinaturas.clients.attributes.Authentication;
+import sdk.jassinaturas.clients.attributes.BestInvoiceDate;
 import sdk.jassinaturas.clients.attributes.BillingInfo;
 import sdk.jassinaturas.clients.attributes.Birthdate;
 import sdk.jassinaturas.clients.attributes.Country;
-import sdk.jassinaturas.clients.attributes.Coupon;
 import sdk.jassinaturas.clients.attributes.CreditCard;
 import sdk.jassinaturas.clients.attributes.Customer;
 import sdk.jassinaturas.clients.attributes.Invoice;
 import sdk.jassinaturas.clients.attributes.Month;
-import sdk.jassinaturas.clients.attributes.NextInvoiceDate;
 import sdk.jassinaturas.clients.attributes.Plan;
 import sdk.jassinaturas.clients.attributes.State;
 import sdk.jassinaturas.clients.attributes.Subscription;
 import sdk.jassinaturas.clients.attributes.SubscriptionStatus;
-import sdk.jassinaturas.communicators.LocalCommunicator;
 import sdk.jassinaturas.communicators.SandboxCommunicator;
 import sdk.jassinaturas.exceptions.ApiResponseErrorException;
 
@@ -28,6 +23,7 @@ import java.util.List;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 import static sdk.jassinaturas.clients.attributes.SubscriptionStatus.CANCELED;
 
@@ -79,7 +75,7 @@ public class SubscriptionClientTest {
     @Test
     public void shouldCreateANewSubscriptionWithoutANewCustomer() {
         Subscription toBeCreated = new Subscription();
-        toBeCreated.withCode("subscription0000_"+ System.currentTimeMillis())
+        toBeCreated.withCode("subscription0000_" + System.currentTimeMillis())
                 .withAmount(100)
                 .withCustomer(new Customer().withCode("customer_created_with_subscription_1484075655594"))
                 .withPlan(new Plan().withCode("plan003"));
@@ -144,7 +140,6 @@ public class SubscriptionClientTest {
 
         assertEquals("Aguardando confirmação", invoice.getStatus().getDescription());
         assertEquals(2, invoice.getStatus().getCode());
-
     }
 
     @Test
@@ -176,11 +171,50 @@ public class SubscriptionClientTest {
     }
 
     @Test
+    public void shouldCreateASubscriptionWithMonthlyPlanWithProRata() {
+        Subscription subscription = new Subscription()
+                .withCode("subscription_" + System.currentTimeMillis())
+                .withAmount(100)
+                .withCustomer(new Customer().withCode("customer_created_with_subscription_1484075655594"))
+                .withPlan(new Plan().withCode("monthly_plan"))
+                .withProRata(true)
+                .withBestInvoiceDate(new BestInvoiceDate().withDayOfMonth(10));
+
+        Subscription created = assinaturas.subscriptions().create(subscription);
+
+        assertEquals("Assinatura criada com sucesso", created.getMessage());
+
+        assertTrue(created.isProRata());
+        assertEquals(10, created.getBestInvoiceDate().getDayOfMonth(), 0.0001);
+    }
+
+    @Test
+    public void shouldCreateASubscriptionWithAnnualPlanWithProRata() {
+        Subscription subscription = new Subscription()
+                .withCode("subscription_" + System.currentTimeMillis())
+                .withAmount(100)
+                .withCustomer(new Customer().withCode("customer_created_with_subscription_1484075655594"))
+                .withPlan(new Plan().withCode("annual_plan"))
+                .withProRata(true)
+                .withBestInvoiceDate(new BestInvoiceDate()
+                        .withDayOfMonth(10)
+                        .withMonthOfYear(10));
+
+        Subscription created = assinaturas.subscriptions().create(subscription);
+
+        assertEquals("Assinatura criada com sucesso", created.getMessage());
+
+        assertTrue(created.isProRata());
+        assertEquals(10, created.getBestInvoiceDate().getDayOfMonth(), 0.0001);
+        assertEquals(10, created.getBestInvoiceDate().getMonthOfYear(), 0.0001);
+    }
+
+    @Test
     public void shouldGetResultFromToString() {
-        String subscription = assinaturas.subscriptions().show("Teste_1484071813").toString();
+        String subscription = assinaturas.subscriptions().show("jassinaturas_show").toString();
 
         assertEquals(
-                "Subscription [amount=990, code=Teste_1484071813, creationDate=CreationDate [day=10, hour=16, minute=10, month=1, second=14, year=2017], customer=Customer [address=null, billingInfo=null, birthdate=null, code=1484071813, cpf=null, customers=null, email=1484071813@exemplo.com.br, fullname=Jose silva, message=null, phoneAreaCode=null, phoneNumber=null, birthdateDay=0, birthdateMonth=0, birthdateYear=0], expirationDate=ExpirationDate [day=24, month=APRIL, year=2020], invoice=null, invoices=null, message=null, nextInvoiceDate=NextInvoiceDate [day=20, month=4, year=2017], plan=Plan [alerts=null, amount=0, billingCycles=0, code=plan003, description=null, interval=null, maxQty=0, message=null, name=Plano Especial, plans=null, setupFee=0, status=null, trial=null], status=CANCELED, subscriptions=null, coupon=null]",
+                "Subscription{alerts=null, amount=3100, code='jassinaturas_show', creationDate=CreationDate [day=11, hour=7, minute=43, month=1, second=21, year=2017], customer=Customer [address=null, billingInfo=null, birthdate=null, code=1484127800, cpf=null, customers=null, email=1484127800@exemplo.com.br, fullname=Jose silva, message=null, phoneAreaCode=null, phoneNumber=null, birthdateDay=0, birthdateMonth=0, birthdateYear=0], expirationDate=ExpirationDate [day=11, month=JANUARY, year=2018], invoice=null, invoices=null, message='null', nextInvoiceDate=NextInvoiceDate [day=11, month=1, year=2017], plan=Plan [alerts=null, amount=0, billingCycles=0, code=monthly_plan, description=null, interval=null, maxQty=0, message=null, name=Plano Especial, plans=null, setupFee=0, status=null, trial=null], status=ACTIVE, subscriptions=null, coupon=null, proRata=null, bestInvoiceDate=null}",
                 subscription);
     }
 

@@ -17,6 +17,8 @@ public class Subscription {
     private SubscriptionStatus status;
     private List<Subscription> subscriptions;
     private Coupon coupon;
+    private Boolean proRata;
+    private BestInvoiceDate bestInvoiceDate;
 
     public List<Alerts> getAlerts() {
         return alerts;
@@ -107,10 +109,42 @@ public class Subscription {
 
     @Override
     public String toString() {
-        return "Subscription [amount=" + amount + ", code=" + code + ", creationDate=" + creationDate + ", customer="
-                + customer + ", expirationDate=" + expirationDate + ", invoice=" + invoice + ", invoices=" + invoices
-                + ", message=" + message + ", nextInvoiceDate=" + nextInvoiceDate + ", plan=" + plan + ", status="
-                + status + ", subscriptions=" + subscriptions + ", coupon=" + coupon + "]";
+        return "Subscription{" +
+                "alerts=" + alerts +
+                ", amount=" + amount +
+                ", code='" + code + '\'' +
+                ", creationDate=" + creationDate +
+                ", customer=" + customer +
+                ", expirationDate=" + expirationDate +
+                ", invoice=" + invoice +
+                ", invoices=" + invoices +
+                ", message='" + message + '\'' +
+                ", nextInvoiceDate=" + nextInvoiceDate +
+                ", plan=" + plan +
+                ", status=" + status +
+                ", subscriptions=" + subscriptions +
+                ", coupon=" + coupon +
+                ", proRata=" + proRata +
+                ", bestInvoiceDate=" + bestInvoiceDate +
+                '}';
+    }
+
+    public Boolean isProRata() {
+        return proRata;
+    }
+
+    public Subscription withProRata(Boolean proRata) {
+        this.proRata = proRata;
+        return this;
+    }
+
+    public Subscription withBestInvoiceDate(BestInvoiceDate bestInvoiceDate) {
+        this.bestInvoiceDate = bestInvoiceDate;
+        return this;
+    }
+
+    public BestInvoiceDate getBestInvoiceDate() {
+        return bestInvoiceDate;
     }
 
 }

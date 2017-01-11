@@ -1,8 +1,5 @@
 package sdk.jassinaturas.clients;
 
-import com.rodrigosaito.mockwebserver.player.Play;
-import com.rodrigosaito.mockwebserver.player.Player;
-import org.junit.Rule;
 import org.junit.Test;
 import sdk.jassinaturas.Assinaturas;
 import sdk.jassinaturas.clients.attributes.Address;
@@ -14,7 +11,6 @@ import sdk.jassinaturas.clients.attributes.CreditCard;
 import sdk.jassinaturas.clients.attributes.Customer;
 import sdk.jassinaturas.clients.attributes.Month;
 import sdk.jassinaturas.clients.attributes.State;
-import sdk.jassinaturas.communicators.ProductionCommunicator;
 import sdk.jassinaturas.communicators.SandboxCommunicator;
 import sdk.jassinaturas.exceptions.ApiResponseErrorException;
 
@@ -87,7 +83,6 @@ public class CustomerClientTest {
         assertEquals("Danillo Souza", customers.get(0).getFullname());
     }
 
-    @Play("CREATE_CUSTOMER_RETURNED_ERROR")
     @Test
     public void shouldReturnErrors() {
         Customer toCreate = new Customer();
@@ -115,7 +110,6 @@ public class CustomerClientTest {
 
     }
 
-    @Play("GET_SINGLE_CUSTOMER")
     @Test
     public void shouldShowACustomer() {
         Customer customer = assinaturas.customers().show("customer000000001");

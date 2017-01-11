@@ -1,9 +1,5 @@
 package sdk.jassinaturas.clients;
 
-import com.rodrigosaito.mockwebserver.player.Play;
-import com.rodrigosaito.mockwebserver.player.Player;
-import org.junit.Before;
-import org.junit.Rule;
 import org.junit.Test;
 import sdk.jassinaturas.Assinaturas;
 import sdk.jassinaturas.clients.attributes.Authentication;
@@ -15,7 +11,6 @@ import sdk.jassinaturas.clients.attributes.Duration;
 import sdk.jassinaturas.clients.attributes.DurationType;
 import sdk.jassinaturas.clients.attributes.ExpirationDate;
 import sdk.jassinaturas.clients.attributes.Month;
-import sdk.jassinaturas.communicators.LocalCommunicator;
 import sdk.jassinaturas.communicators.SandboxCommunicator;
 
 import static org.junit.Assert.assertEquals;
