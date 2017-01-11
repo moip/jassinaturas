@@ -1,9 +1,9 @@
 package sdk.jassinaturas.clients;
 
-import java.util.List;
-
 import sdk.jassinaturas.clients.attributes.Plan;
 import sdk.jassinaturas.communicators.PlanCommunicator;
+
+import java.util.List;
 
 public class PlanClient {
 

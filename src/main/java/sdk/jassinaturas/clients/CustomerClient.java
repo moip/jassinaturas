@@ -1,9 +1,9 @@
 package sdk.jassinaturas.clients;
 
-import java.util.List;
-
 import sdk.jassinaturas.clients.attributes.Customer;
 import sdk.jassinaturas.communicators.CustomerCommunicator;
+
+import java.util.List;
 
 public class CustomerClient {
 

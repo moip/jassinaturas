@@ -7,10 +7,9 @@ import feign.Feign;
 import feign.gson.GsonDecoder;
 import feign.gson.GsonEncoder;
 import sdk.jassinaturas.clients.attributes.Authentication;
-import sdk.jassinaturas.feign.BasicAuthRequestInterceptor;
 import sdk.jassinaturas.feign.FixedHeadersInterceptor;
 
-public class ProductionCommunicator implements Communicator {
+public class LocalCommunicator implements Communicator {
 
     public <T> T build(final Class<T> clazz, final Authentication authentication) {
         Gson gson = new GsonBuilder().setFieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES).create();
@@ -19,10 +18,7 @@ public class ProductionCommunicator implements Communicator {
                 .decoder(new GsonDecoder(gson))
                 .encoder(new GsonEncoder(gson))
                 .errorDecoder(new ErrorHandler())
-                .requestInterceptor(
-                        new BasicAuthRequestInterceptor(authentication.getToken(), authentication.getSecret()))
                 .requestInterceptor(new FixedHeadersInterceptor())
-                .target(clazz, "https://api.moip.com.br/assinaturas/v1");
+                .target(clazz, "http://localhost:9000");
     }
-
 }

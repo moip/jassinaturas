@@ -1,10 +1,10 @@
 package sdk.jassinaturas.clients;
 
-import java.util.List;
-
 import sdk.jassinaturas.clients.attributes.Invoice;
 import sdk.jassinaturas.clients.attributes.Subscription;
 import sdk.jassinaturas.communicators.SubscriptionCommunicator;
+
+import java.util.List;
 
 public class SubscriptionClient {
 
@@ -26,7 +26,7 @@ public class SubscriptionClient {
 
     public Subscription create(final Subscription toBeCreated) {
 
-        Subscription subscription = null;
+        Subscription subscription;
         if (shouldCreateCustomer(toBeCreated)) {
             subscription = subscriptionCommunicator.createWithCustomer(toBeCreated);
             return subscription;

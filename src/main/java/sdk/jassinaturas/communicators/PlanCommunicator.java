@@ -1,10 +1,9 @@
 package sdk.jassinaturas.communicators;
 
-import javax.inject.Named;
-
-import sdk.jassinaturas.clients.attributes.Plan;
-import feign.Headers;
 import feign.RequestLine;
+import sdk.jassinaturas.clients.attributes.Plan;
+
+import javax.inject.Named;
 
 public interface PlanCommunicator {
 

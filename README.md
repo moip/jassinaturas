@@ -1,9 +1,4 @@
-jassinaturas Client Library for Java
-
-[![Coverage Status](https://coveralls.io/repos/paniko0/jassinaturas/badge.svg?branch=master)](https://coveralls.io/r/paniko0/jassinaturas?branch=master)
-[![Build Status](https://travis-ci.org/paniko0/jassinaturas.svg?branch=master)](https://travis-ci.org/paniko0/jassinaturas)
-[![Build Status](https://drone.io/github.com/paniko0/jassinaturas/status.png)](https://drone.io/github.com/paniko0/jassinaturas/latest)
-[![wercker status](https://app.wercker.com/status/6de4cd22b6c24643861eb225115a3ac5/s/master "wercker status")](https://app.wercker.com/project/bykey/6de4cd22b6c24643861eb225115a3ac5)
+jassinaturas Client Library for Java - forked from https://github.com/paniko0/jassinaturas 
 
 ============================================
 
@@ -20,9 +15,9 @@ API documentation is available at: http://moiplabs.github.io/assinaturas-docs/ap
 # Maven dependency
 ```java
 <dependency>
-  <groupId>com.github.paniko0</groupId>
-  <artifactId>jassinaturas</artifactId>
-  <version>1.1.0</version>
+   <groupId>br.com.moip</groupId>
+   <artifactId>jassinaturas</artifactId>
+   <version>1.1.0</version>
 </dependency>
 ```
 
@@ -162,7 +157,7 @@ Creating a new subscription
                             .withNumber("4111111111111111"))));
 ```
 
-You can also create a subscription just informing an already created customer:
+You can create a subscription just informing an already created customer:
 
 ```java
 	Subscription toBeCreated = new Subscription();
@@ -174,6 +169,28 @@ You can also create a subscription just informing an already created customer:
         .withPlan(new Plan()
 			.withCode("YOUR_PLAN_CODE"));
 ```
+
+You can also create a subscription with pro-rata. It's obligatory inform a best Invoide Date.
+For annualy plans month is required. set day is optional.
+For monthly day is required.
+
+There's no best invoice date in daily plans.
+
+```java
+	Subscription toBeCreated = new Subscription();
+    toBeCreated
+        .withCode("SUBSCRIPTION_CODE")
+		.withAmount(100)
+        .withCustomer(new Customer()
+			.withCode("YOUR_CUSTOMER_CODE"))
+        .withPlan(new Plan()
+			.withCode("YOUR_PLAN_CODE"))
+			.withProRata(true)
+            .withBestInvoiceDate(new BestInvoiceDate()
+                                    .withDayOfMonth(10)
+                                    .withMonthOfYear(10));;
+```
+
 
 Then you'll need to call the following method:
 
