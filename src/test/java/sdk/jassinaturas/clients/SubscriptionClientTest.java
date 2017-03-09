@@ -2,29 +2,14 @@ package sdk.jassinaturas.clients;
 
 import org.junit.Test;
 import sdk.jassinaturas.Assinaturas;
-import sdk.jassinaturas.clients.attributes.Address;
-import sdk.jassinaturas.clients.attributes.Authentication;
-import sdk.jassinaturas.clients.attributes.BestInvoiceDate;
-import sdk.jassinaturas.clients.attributes.BillingInfo;
-import sdk.jassinaturas.clients.attributes.Birthdate;
-import sdk.jassinaturas.clients.attributes.Country;
-import sdk.jassinaturas.clients.attributes.CreditCard;
-import sdk.jassinaturas.clients.attributes.Customer;
-import sdk.jassinaturas.clients.attributes.Invoice;
-import sdk.jassinaturas.clients.attributes.Month;
-import sdk.jassinaturas.clients.attributes.Plan;
-import sdk.jassinaturas.clients.attributes.State;
-import sdk.jassinaturas.clients.attributes.Subscription;
-import sdk.jassinaturas.clients.attributes.SubscriptionStatus;
+import sdk.jassinaturas.clients.attributes.*;
 import sdk.jassinaturas.communicators.SandboxCommunicator;
 import sdk.jassinaturas.exceptions.ApiResponseErrorException;
 
 import java.util.List;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.fail;
+import static org.hamcrest.CoreMatchers.isA;
+import static org.junit.Assert.*;
 import static sdk.jassinaturas.clients.attributes.SubscriptionStatus.CANCELED;
 
 public class SubscriptionClientTest {
@@ -207,6 +192,32 @@ public class SubscriptionClientTest {
         assertTrue(created.isProRata());
         assertEquals(10, created.getBestInvoiceDate().getDayOfMonth(), 0.0001);
         assertEquals(10, created.getBestInvoiceDate().getMonthOfYear(), 0.0001);
+    }
+
+    @Test
+    public void shouldCreateASubscriptionWithTrial() {
+
+        Assinaturas assinaturas2 = new Assinaturas(new Authentication("VLA6S30CWOY3KWJQKBLHYORERCGFPRE2",
+                "ELTHWZ0QYI5LNTZGXF6HWODSK6Q3NNNNMYVHWYN3"), new SandboxCommunicator());
+
+        String subscriptionName = "subscription_" + System.currentTimeMillis();
+        Subscription subscription = new Subscription()
+                .withCode(subscriptionName)
+                .withAmount(100)
+                .withCustomer(new Customer().withCode("customer_created_with_subscription_1484075655594"))
+                .withPlan(new Plan().withCode("plano-marvadao-trial"));
+
+        Subscription created = assinaturas2.subscriptions().create(subscription);
+
+        assertEquals("Assinatura criada com sucesso", created.getMessage());
+
+        assertThat(created.getTrial().getStart().getDay(), isA(Integer.class));
+        assertThat(created.getTrial().getStart().getMonth(), isA(Integer.class));
+        assertThat(created.getTrial().getStart().getYear(), isA(Integer.class));
+
+        assertThat(created.getTrial().getEnd().getDay(), isA(Integer.class));
+        assertThat(created.getTrial().getEnd().getMonth(), isA(Integer.class));
+        assertThat(created.getTrial().getEnd().getYear(), isA(Integer.class));
     }
 
     @Test
