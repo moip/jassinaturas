@@ -19,6 +19,8 @@ public class Subscription {
     private Coupon coupon;
     private Boolean proRata;
     private BestInvoiceDate bestInvoiceDate;
+    private Trial trial;
+    private BillingInfo billingInfo;
 
     public List<Alerts> getAlerts() {
         return alerts;
@@ -147,4 +149,11 @@ public class Subscription {
         return bestInvoiceDate;
     }
 
+    public Trial getTrial() {
+        return trial;
+    }
+
+    public BillingInfo getBillingInfo() {
+        return billingInfo;
+    }
 }

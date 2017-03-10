@@ -3,6 +3,7 @@ package sdk.jassinaturas.clients.attributes;
 import java.util.List;
 
 public class BillingInfo {
+    private Boleto boleto;
     private CreditCard creditCard;
     private List<CreditCard> creditCards;
 
@@ -24,4 +25,7 @@ public class BillingInfo {
         return "BillingInfo [creditCard=" + creditCard + ", creditCards=" + creditCards + "]";
     }
 
+    public Boleto getBoleto() {
+        return boleto;
+    }
 }
