@@ -63,15 +63,15 @@ public class SubscriptionClientTest {
         toBeCreated.withCode("subscription0000_" + System.currentTimeMillis())
                 .withAmount(100)
                 .withCustomer(new Customer().withCode("customer_created_with_subscription_1484075655594"))
-                .withPlan(new Plan().withCode("plan003"));
-
+                .withPaymentMethod(PaymentMethodType.BOLETO)
+                .withPlan(new Plan().withCode("plan006_test"));
         Subscription created = assinaturas.subscriptions().create(toBeCreated);
 
         assertEquals("Assinatura criada com sucesso", created.getMessage());
 
         assertEquals(created.getAmount(), 100);
-        assertEquals(created.getPlan().getName(), "Plano Especial");
-        assertEquals(created.getPlan().getCode(), "plan003");
+        assertEquals(created.getPlan().getName(), "Plano Especial Test");
+        assertEquals(created.getPlan().getCode(), "plan006_test");
         assertEquals(created.getStatus(), SubscriptionStatus.ACTIVE);
         assertEquals(created.getInvoice().getAmount(), 600);
         assertEquals(created.getInvoice().getStatus().getDescription(), "Aguardando confirmação");
@@ -111,17 +111,17 @@ public class SubscriptionClientTest {
         List<Invoice> invoices = assinaturas.subscriptions().invoices("subscription00001");
         Invoice invoice = invoices.get(0);
 
-        assertEquals(10, invoice.getCreationDate().getMinute());
-        assertEquals(39, invoice.getCreationDate().getSecond());
-        assertEquals(Month.JANUARY, invoice.getCreationDate().getMonth());
+        assertEquals(14, invoice.getCreationDate().getMinute());
+        assertEquals(56, invoice.getCreationDate().getSecond());
+        assertEquals(Month.MARCH, invoice.getCreationDate().getMonth());
         assertEquals(2017, invoice.getCreationDate().getYear());
-        assertEquals(10, invoice.getCreationDate().getHour());
-        assertEquals(10, invoice.getCreationDate().getDay());
+        assertEquals(0, invoice.getCreationDate().getHour());
+        assertEquals(29, invoice.getCreationDate().getDay());
 
-        assertEquals(600, invoice.getAmount());
+        assertEquals(100, invoice.getAmount());
         assertEquals("subscription00001", invoice.getSubscriptionCode());
-        assertEquals(1, invoice.getOccurrence());
-        assertEquals(1269135, invoice.getId());
+        assertEquals(4, invoice.getOccurrence());
+        assertEquals(1337409, invoice.getId());
 
         assertEquals("Aguardando confirmação", invoice.getStatus().getDescription());
         assertEquals(2, invoice.getStatus().getCode());
@@ -163,10 +163,11 @@ public class SubscriptionClientTest {
                 .withCustomer(new Customer().withCode("customer_created_with_subscription_1484075655594"))
                 .withPlan(new Plan().withCode("monthly_plan"))
                 .withProRata(true)
+                .withPaymentMethod(PaymentMethodType.CREDIT_CARD)
                 .withBestInvoiceDate(new BestInvoiceDate().withDayOfMonth(10));
 
-        Subscription created = assinaturas.subscriptions().create(subscription);
 
+        Subscription created = assinaturas.subscriptions().create(subscription);
         assertEquals("Assinatura criada com sucesso", created.getMessage());
 
         assertTrue(created.isProRata());
@@ -176,10 +177,10 @@ public class SubscriptionClientTest {
     @Test
     public void shouldCreateASubscriptionWithAnnualPlanWithProRata() {
         Subscription subscription = new Subscription()
-                .withCode("subscription_" + System.currentTimeMillis())
+                .withCode("subscription_test_" + System.currentTimeMillis())
                 .withAmount(100)
                 .withCustomer(new Customer().withCode("customer_created_with_subscription_1484075655594"))
-                .withPlan(new Plan().withCode("annual_plan"))
+                .withPlan(new Plan().withCode("plan_test_all_year"))
                 .withProRata(true)
                 .withBestInvoiceDate(new BestInvoiceDate()
                         .withDayOfMonth(10)
@@ -192,6 +193,7 @@ public class SubscriptionClientTest {
         assertTrue(created.isProRata());
         assertEquals(10, created.getBestInvoiceDate().getDayOfMonth(), 0.0001);
         assertEquals(10, created.getBestInvoiceDate().getMonthOfYear(), 0.0001);
+
     }
 
     @Test
@@ -225,7 +227,7 @@ public class SubscriptionClientTest {
         String subscription = assinaturas.subscriptions().show("jassinaturas_show").toString();
 
         assertEquals(
-                "Subscription{alerts=null, amount=3100, code='jassinaturas_show', creationDate=CreationDate [day=11, hour=7, minute=43, month=1, second=21, year=2017], customer=Customer [address=null, billingInfo=null, birthdate=null, code=1484127800, cpf=null, customers=null, email=1484127800@exemplo.com.br, fullname=Jose silva, message=null, phoneAreaCode=null, phoneNumber=null, birthdateDay=0, birthdateMonth=0, birthdateYear=0], expirationDate=ExpirationDate [day=11, month=JANUARY, year=2018], invoice=null, invoices=null, message='null', nextInvoiceDate=NextInvoiceDate [day=11, month=1, year=2017], plan=Plan [alerts=null, amount=0, billingCycles=0, code=monthly_plan, description=null, interval=null, maxQty=0, message=null, name=Plano Especial, plans=null, setupFee=0, status=null, trial=null], status=ACTIVE, subscriptions=null, coupon=null, proRata=null, bestInvoiceDate=null}",
+                "Subscription{alerts=null, amount=3100, code='jassinaturas_show', creationDate=CreationDate [day=11, hour=7, minute=43, month=1, second=21, year=2017], customer=Customer [address=null, billingInfo=BillingInfo [creditCard=CreditCard [brand=VISA, expirationMonth=04, expirationYear=18, firstSixDigits=411111, holderName=Nome Completo, lastFourDigits=1111, number=null, vault=f62b250e-9cb6-4295-bd17-b2e542967e9b], creditCards=null], birthdate=null, code=1484127800, cpf=null, customers=null, email=1484127800@exemplo.com.br, fullname=Jose silva, message=null, phoneAreaCode=null, phoneNumber=null, birthdateDay=0, birthdateMonth=0, birthdateYear=0], expirationDate=ExpirationDate [day=11, month=JANUARY, year=2018], invoice=Invoice{amount=3100, creationDate=null, customer=null, id=1269293, items=null, payments=null, plan=null, status=InvoiceStatus [code=2, description=Aguardando confirmação], subscriptionCode='null', occurrence=0, dueDate=null, _links=null}, invoices=null, message='null', nextInvoiceDate=null, plan=Plan [alerts=null, amount=0, billingCycles=0, code=monthly_plan, description=null, interval=null, maxQty=0, message=null, name=Plano Especial, plans=null, setupFee=0, status=null, trial=null], status=ACTIVE, subscriptions=null, coupon=null, proRata=null, bestInvoiceDate=null, trial=null, billingInfo=null}",
                 subscription);
     }
 

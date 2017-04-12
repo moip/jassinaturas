@@ -21,6 +21,7 @@ public class Subscription {
     private BestInvoiceDate bestInvoiceDate;
     private Trial trial;
     private BillingInfo billingInfo;
+    private PaymentMethodType paymentMethod;
 
     public List<Alerts> getAlerts() {
         return alerts;
@@ -133,6 +134,15 @@ public class Subscription {
 
     public BillingInfo getBillingInfo() {
         return billingInfo;
+    }
+
+    public Subscription withPaymentMethod(PaymentMethodType paymentMethod) {
+        this.paymentMethod = paymentMethod;
+        return this;
+    }
+
+    public PaymentMethodType getPaymentMethod() {
+        return paymentMethod;
     }
 
     @Override
