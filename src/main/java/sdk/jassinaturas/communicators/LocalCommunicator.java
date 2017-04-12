@@ -12,7 +12,10 @@ import sdk.jassinaturas.feign.FixedHeadersInterceptor;
 public class LocalCommunicator implements Communicator {
 
     public <T> T build(final Class<T> clazz, final Authentication authentication) {
-        Gson gson = new GsonBuilder().setFieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES).create();
+        Gson gson = new GsonBuilder()
+                .setDateFormat("dd/MM/yyyy")
+                .setFieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES)
+                .create();
         return Feign
                 .builder()
                 .decoder(new GsonDecoder(gson))
