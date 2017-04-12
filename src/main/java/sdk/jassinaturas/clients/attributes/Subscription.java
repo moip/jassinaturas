@@ -21,6 +21,7 @@ public class Subscription {
     private BestInvoiceDate bestInvoiceDate;
     private Trial trial;
     private BillingInfo billingInfo;
+    private PaymentMethodType paymentMethod;
 
     public List<Alerts> getAlerts() {
         return alerts;
@@ -109,28 +110,6 @@ public class Subscription {
         return this;
     }
 
-    @Override
-    public String toString() {
-        return "Subscription{" +
-                "alerts=" + alerts +
-                ", amount=" + amount +
-                ", code='" + code + '\'' +
-                ", creationDate=" + creationDate +
-                ", customer=" + customer +
-                ", expirationDate=" + expirationDate +
-                ", invoice=" + invoice +
-                ", invoices=" + invoices +
-                ", message='" + message + '\'' +
-                ", nextInvoiceDate=" + nextInvoiceDate +
-                ", plan=" + plan +
-                ", status=" + status +
-                ", subscriptions=" + subscriptions +
-                ", coupon=" + coupon +
-                ", proRata=" + proRata +
-                ", bestInvoiceDate=" + bestInvoiceDate +
-                '}';
-    }
-
     public Boolean isProRata() {
         return proRata;
     }
@@ -155,5 +134,39 @@ public class Subscription {
 
     public BillingInfo getBillingInfo() {
         return billingInfo;
+    }
+
+    public Subscription withPaymentMethod(PaymentMethodType paymentMethod) {
+        this.paymentMethod = paymentMethod;
+        return this;
+    }
+
+    public PaymentMethodType getPaymentMethod() {
+        return paymentMethod;
+    }
+
+    @Override
+    public String toString() {
+        final StringBuilder sb = new StringBuilder("Subscription{");
+        sb.append("alerts=").append(alerts);
+        sb.append(", amount=").append(amount);
+        sb.append(", code='").append(code).append('\'');
+        sb.append(", creationDate=").append(creationDate);
+        sb.append(", customer=").append(customer);
+        sb.append(", expirationDate=").append(expirationDate);
+        sb.append(", invoice=").append(invoice);
+        sb.append(", invoices=").append(invoices);
+        sb.append(", message='").append(message).append('\'');
+        sb.append(", nextInvoiceDate=").append(nextInvoiceDate);
+        sb.append(", plan=").append(plan);
+        sb.append(", status=").append(status);
+        sb.append(", subscriptions=").append(subscriptions);
+        sb.append(", coupon=").append(coupon);
+        sb.append(", proRata=").append(proRata);
+        sb.append(", bestInvoiceDate=").append(bestInvoiceDate);
+        sb.append(", trial=").append(trial);
+        sb.append(", billingInfo=").append(billingInfo);
+        sb.append('}');
+        return sb.toString();
     }
 }

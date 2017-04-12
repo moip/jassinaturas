@@ -9,11 +9,13 @@ public class Invoice {
     private Customer customer;
     public int id;
     private List<Item> items;
-    public int occurrence;
     private List<Payment> payments;
     private Plan plan;
     public InvoiceStatus status;
     private String subscriptionCode;
+    private int occurrence;
+    private CreationDate dueDate;
+    private InvoiceLinks _links;
 
     public int getAmount() {
         return amount;
@@ -55,11 +57,31 @@ public class Invoice {
         return subscriptionCode;
     }
 
-    @Override
-    public String toString() {
-        return "Invoice [amount=" + amount + ", creationDate=" + creationDate + ", customer=" + customer + ", id=" + id
-                + ", items=" + items + ", occurrence=" + occurrence + ", payments=" + payments + ", plan=" + plan
-                + ", status=" + status + ", subscriptionCode=" + subscriptionCode + "]";
+    public CreationDate getDueDate() {
+        return dueDate;
     }
 
+    @Override
+    public String toString() {
+        final StringBuilder sb = new StringBuilder("Invoice{");
+        sb.append("amount=").append(amount);
+        sb.append(", creationDate=").append(creationDate);
+        sb.append(", customer=").append(customer);
+        sb.append(", id=").append(id);
+        sb.append(", items=").append(items);
+        sb.append(", payments=").append(payments);
+        sb.append(", plan=").append(plan);
+        sb.append(", status=").append(status);
+        sb.append(", subscriptionCode='").append(subscriptionCode).append('\'');
+        sb.append(", occurrence=").append(occurrence);
+        sb.append(", dueDate=").append(dueDate);
+        sb.append(", _links=").append(_links);
+        sb.append('}');
+        return sb.toString();
+    }
+
+
+    public InvoiceLinks get_links() {
+        return _links;
+    }
 }

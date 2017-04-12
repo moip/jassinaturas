@@ -75,7 +75,6 @@ public class BasicAuthRequestInterceptor implements RequestInterceptor {
         this.headerValue = "Basic " + base64Encode((username + ":" + password).getBytes(charset));
     }
 
-    @Override
     public void apply(final RequestTemplate template) {
         template.header("Authorization", headerValue);
     }
