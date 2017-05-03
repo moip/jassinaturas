@@ -107,7 +107,7 @@ public class SubscriptionClientTest {
     }
 
     @Test
-    public void shouldReturnIn1voicesFromSubscription() {
+    public void shouldReturnInvoicesFromSubscription() {
         List<Invoice> invoices = assinaturas.subscriptions().invoices("subscription00001");
         Invoice invoice = invoices.get(0);
 
