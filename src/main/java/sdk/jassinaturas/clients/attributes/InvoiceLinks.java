@@ -11,7 +11,7 @@ public class InvoiceLinks {
         return boleto;
     }
 
-    private class LinkBoleto {
+    public class LinkBoleto {
         private String redirectHref;
 
         public String getRedirectHref() {
