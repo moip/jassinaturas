@@ -1,3 +1,5 @@
+[![CircleCI](https://circleci.com/gh/moip/jassinaturas.svg?style=shield)](https://circleci.com/gh/moip/jassinaturas)
+
 # JAsssinaturas - Java library to integrate with Moip Assinaturas
 
 Moip Assinaturas is a product that manages recurring fees and charges. It allows you to create plans, customers, subscriptions, coupons etc.
