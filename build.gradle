@@ -75,6 +75,14 @@ uploadArchives {
                     }
                 }
 
+                developers {
+                    developer {
+                        id 'ecolabardini'
+                        name 'Eduardo Colabardini'
+                        email 'eduardocolabardini@gmail.com'
+                    }
+                }
+
             }
         }
     }
