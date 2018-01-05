@@ -1,6 +1,7 @@
 package sdk.jassinaturas.clients.attributes;
 
 import org.junit.Test;
+import br.com.moip.jassinaturas.clients.attributes.PaymentMethodType;
 
 import static org.junit.Assert.assertTrue;
 

@@ -1,0 +1,36 @@
+package br.com.moip.jassinaturas.communicators;
+
+import feign.Response;
+import feign.codec.ErrorDecoder;
+import br.com.moip.jassinaturas.exceptions.ApiResponseErrorException;
+import br.com.moip.jassinaturas.serializers.GsonDeserializer;
+
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.Scanner;
+
+public class ErrorHandler implements ErrorDecoder {
+
+    public Exception decode(final String arg0, final Response arg1) {
+      
+      if(arg1.body() == null){
+        String json = "{\"message\":\"Http Status 400 happened\", \"errors\": [{\"code\": \"UNKNOWN\", \"description\": \"Unknown error\"}]}";
+        GsonDeserializer gson = new GsonDeserializer();
+        ApiResponseError error = gson.deserialize(json, ApiResponseError.class);
+        throw new ApiResponseErrorException(error);
+      }
+
+        try {
+            InputStream is = arg1.body().asInputStream();
+            Scanner s = new Scanner(is).useDelimiter("\\A");
+            String json = s.hasNext() ? s.next() : "";
+            GsonDeserializer gson = new GsonDeserializer();
+            ApiResponseError error = gson.deserialize(json, ApiResponseError.class);
+            throw new ApiResponseErrorException(error);
+        } catch (IOException e) {
+            System.out.println("Error when parsing response" + e);
+        }
+      
+      return new ApiResponseErrorException("Http Status 400 happened");
+    }
+}

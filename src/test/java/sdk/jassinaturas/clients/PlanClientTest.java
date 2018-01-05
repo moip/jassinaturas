@@ -2,16 +2,16 @@ package sdk.jassinaturas.clients;
 
 import org.junit.Assert;
 import org.junit.Test;
-import sdk.jassinaturas.Assinaturas;
-import sdk.jassinaturas.clients.attributes.Authentication;
-import sdk.jassinaturas.clients.attributes.Interval;
-import sdk.jassinaturas.clients.attributes.Plan;
-import sdk.jassinaturas.clients.attributes.PlanStatus;
-import sdk.jassinaturas.clients.attributes.Trial;
-import sdk.jassinaturas.clients.attributes.Unit;
-import sdk.jassinaturas.communicators.ProductionCommunicator;
-import sdk.jassinaturas.communicators.SandboxCommunicator;
-import sdk.jassinaturas.exceptions.ApiResponseErrorException;
+import br.com.moip.jassinaturas.Assinaturas;
+import br.com.moip.jassinaturas.clients.attributes.Authentication;
+import br.com.moip.jassinaturas.clients.attributes.Interval;
+import br.com.moip.jassinaturas.clients.attributes.Plan;
+import br.com.moip.jassinaturas.clients.attributes.PlanStatus;
+import br.com.moip.jassinaturas.clients.attributes.Trial;
+import br.com.moip.jassinaturas.clients.attributes.Unit;
+import br.com.moip.jassinaturas.communicators.ProductionCommunicator;
+import br.com.moip.jassinaturas.communicators.SandboxCommunicator;
+import br.com.moip.jassinaturas.exceptions.ApiResponseErrorException;
 
 import java.util.List;
 

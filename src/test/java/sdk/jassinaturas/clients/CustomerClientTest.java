@@ -1,18 +1,18 @@
 package sdk.jassinaturas.clients;
 
 import org.junit.Test;
-import sdk.jassinaturas.Assinaturas;
-import sdk.jassinaturas.clients.attributes.Address;
-import sdk.jassinaturas.clients.attributes.Authentication;
-import sdk.jassinaturas.clients.attributes.BillingInfo;
-import sdk.jassinaturas.clients.attributes.Birthdate;
-import sdk.jassinaturas.clients.attributes.Country;
-import sdk.jassinaturas.clients.attributes.CreditCard;
-import sdk.jassinaturas.clients.attributes.Customer;
-import sdk.jassinaturas.clients.attributes.Month;
-import sdk.jassinaturas.clients.attributes.State;
-import sdk.jassinaturas.communicators.SandboxCommunicator;
-import sdk.jassinaturas.exceptions.ApiResponseErrorException;
+import br.com.moip.jassinaturas.Assinaturas;
+import br.com.moip.jassinaturas.clients.attributes.Address;
+import br.com.moip.jassinaturas.clients.attributes.Authentication;
+import br.com.moip.jassinaturas.clients.attributes.BillingInfo;
+import br.com.moip.jassinaturas.clients.attributes.Birthdate;
+import br.com.moip.jassinaturas.clients.attributes.Country;
+import br.com.moip.jassinaturas.clients.attributes.CreditCard;
+import br.com.moip.jassinaturas.clients.attributes.Customer;
+import br.com.moip.jassinaturas.clients.attributes.Month;
+import br.com.moip.jassinaturas.clients.attributes.State;
+import br.com.moip.jassinaturas.communicators.SandboxCommunicator;
+import br.com.moip.jassinaturas.exceptions.ApiResponseErrorException;
 
 import java.util.List;
 

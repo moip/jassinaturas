@@ -1,16 +1,30 @@
 package sdk.jassinaturas.clients;
 
 import org.junit.Test;
-import sdk.jassinaturas.Assinaturas;
-import sdk.jassinaturas.clients.attributes.*;
-import sdk.jassinaturas.communicators.SandboxCommunicator;
-import sdk.jassinaturas.exceptions.ApiResponseErrorException;
+import br.com.moip.jassinaturas.Assinaturas;
+import br.com.moip.jassinaturas.clients.attributes.Address;
+import br.com.moip.jassinaturas.clients.attributes.Authentication;
+import br.com.moip.jassinaturas.clients.attributes.BestInvoiceDate;
+import br.com.moip.jassinaturas.clients.attributes.BillingInfo;
+import br.com.moip.jassinaturas.clients.attributes.Birthdate;
+import br.com.moip.jassinaturas.clients.attributes.Country;
+import br.com.moip.jassinaturas.clients.attributes.CreditCard;
+import br.com.moip.jassinaturas.clients.attributes.Customer;
+import br.com.moip.jassinaturas.clients.attributes.Invoice;
+import br.com.moip.jassinaturas.clients.attributes.Month;
+import br.com.moip.jassinaturas.clients.attributes.PaymentMethodType;
+import br.com.moip.jassinaturas.clients.attributes.Plan;
+import br.com.moip.jassinaturas.clients.attributes.State;
+import br.com.moip.jassinaturas.clients.attributes.Subscription;
+import br.com.moip.jassinaturas.clients.attributes.SubscriptionStatus;
+import br.com.moip.jassinaturas.communicators.SandboxCommunicator;
+import br.com.moip.jassinaturas.exceptions.ApiResponseErrorException;
 
 import java.util.List;
 
 import static org.hamcrest.CoreMatchers.isA;
 import static org.junit.Assert.*;
-import static sdk.jassinaturas.clients.attributes.SubscriptionStatus.CANCELED;
+import static br.com.moip.jassinaturas.clients.attributes.SubscriptionStatus.CANCELED;
 
 public class SubscriptionClientTest {
 

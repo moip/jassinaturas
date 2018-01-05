@@ -1,12 +1,12 @@
 package sdk.jassinaturas.clients;
 
 import org.junit.Test;
-import sdk.jassinaturas.Assinaturas;
-import sdk.jassinaturas.clients.attributes.Authentication;
-import sdk.jassinaturas.clients.attributes.Invoice;
-import sdk.jassinaturas.clients.attributes.Month;
-import sdk.jassinaturas.clients.attributes.Payment;
-import sdk.jassinaturas.communicators.SandboxCommunicator;
+import br.com.moip.jassinaturas.Assinaturas;
+import br.com.moip.jassinaturas.clients.attributes.Authentication;
+import br.com.moip.jassinaturas.clients.attributes.Invoice;
+import br.com.moip.jassinaturas.clients.attributes.Month;
+import br.com.moip.jassinaturas.clients.attributes.Payment;
+import br.com.moip.jassinaturas.communicators.SandboxCommunicator;
 
 import java.util.List;
 

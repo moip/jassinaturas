@@ -1,17 +1,17 @@
 package sdk.jassinaturas.clients;
 
 import org.junit.Test;
-import sdk.jassinaturas.Assinaturas;
-import sdk.jassinaturas.clients.attributes.Authentication;
-import sdk.jassinaturas.clients.attributes.Coupon;
-import sdk.jassinaturas.clients.attributes.CouponStatus;
-import sdk.jassinaturas.clients.attributes.Discount;
-import sdk.jassinaturas.clients.attributes.DiscountType;
-import sdk.jassinaturas.clients.attributes.Duration;
-import sdk.jassinaturas.clients.attributes.DurationType;
-import sdk.jassinaturas.clients.attributes.ExpirationDate;
-import sdk.jassinaturas.clients.attributes.Month;
-import sdk.jassinaturas.communicators.SandboxCommunicator;
+import br.com.moip.jassinaturas.Assinaturas;
+import br.com.moip.jassinaturas.clients.attributes.Authentication;
+import br.com.moip.jassinaturas.clients.attributes.Coupon;
+import br.com.moip.jassinaturas.clients.attributes.CouponStatus;
+import br.com.moip.jassinaturas.clients.attributes.Discount;
+import br.com.moip.jassinaturas.clients.attributes.DiscountType;
+import br.com.moip.jassinaturas.clients.attributes.Duration;
+import br.com.moip.jassinaturas.clients.attributes.DurationType;
+import br.com.moip.jassinaturas.clients.attributes.ExpirationDate;
+import br.com.moip.jassinaturas.clients.attributes.Month;
+import br.com.moip.jassinaturas.communicators.SandboxCommunicator;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
