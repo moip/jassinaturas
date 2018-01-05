@@ -1,4 +1,4 @@
-package sdk.jassinaturas.clients;
+package br.com.moip.jassinaturas.clients;
 
 import org.junit.Assert;
 import org.junit.Test;
