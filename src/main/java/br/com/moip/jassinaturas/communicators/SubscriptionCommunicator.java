@@ -1,17 +1,17 @@
 package br.com.moip.jassinaturas.communicators;
 
 import br.com.moip.jassinaturas.clients.attributes.Subscription;
-import feign.RequestLine;
 
-import javax.inject.Named;
+import feign.Param;
+import feign.RequestLine;
 
 public interface SubscriptionCommunicator {
 
     @RequestLine("PUT /subscriptions/{code}/activate")
-    Subscription activate(@Named("code") String code);
+    Subscription activate(@Param("code") String code);
 
     @RequestLine("PUT /subscriptions/{code}/cancel")
-    Subscription cancel(@Named("code") String code);
+    Subscription cancel(@Param("code") String code);
 
     @RequestLine("POST /subscriptions?new_customer=true")
     Subscription createWithCustomer(Subscription subscription);
@@ -20,18 +20,18 @@ public interface SubscriptionCommunicator {
     Subscription createWithoutCustomer(Subscription subscription);
 
     @RequestLine("GET /subscriptions/{code}/invoices")
-    Subscription invoices(@Named("code") String subscriptionCode);
+    Subscription invoices(@Param("code") String subscriptionCode);
 
     @RequestLine("GET /subscriptions")
     Subscription list();
 
     @RequestLine("GET /subscriptions/{code}")
-    Subscription show(@Named("code") String code);
+    Subscription show(@Param("code") String code);
 
     @RequestLine("PUT /subscriptions/{code}/suspend")
-    Subscription suspend(@Named("code") String code);
+    Subscription suspend(@Param("code") String code);
 
     @RequestLine("PUT /subscriptions/{code}")
-    Subscription update(@Named("code") String code, Subscription subscription);
+    Subscription update(@Param("code") String code, Subscription subscription);
 
 }
