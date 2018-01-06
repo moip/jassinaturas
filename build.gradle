@@ -1,9 +1,11 @@
 apply plugin: 'java'
 apply plugin: 'maven'
+apply plugin: 'maven-publish'
 apply plugin: 'signing'
 
+
 group 'br.com.moip'
-version '1.1.5'
+version '1.1.6'
 archivesBaseName = "jassinaturas"
 sourceCompatibility = 1.7
 
@@ -14,11 +16,13 @@ repositories {
 
 dependencies {
     testCompile group: 'junit', name: 'junit', version: '4.12'
-    testCompile group: 'org.codehaus.groovy', name: 'groovy-all', version: '2.2.1'
     testCompile group: 'net.sourceforge.cobertura', name: 'cobertura', version: '2.0.3'
+    testCompile group: 'org.slf4j', name: 'slf4j-simple', version: '1.7.25'
 
-    compile group: 'com.netflix.feign', name: 'feign-gson', version: '6.0.1'
-    compile group: 'commons-httpclient', name: 'commons-httpclient', version: '3.1'
+    compile group: 'org.slf4j', name: 'slf4j-api', version: '1.7.25'
+    compile group: 'io.github.openfeign', name: 'feign-okhttp', version: '9.3.1'
+    compile group: 'io.github.openfeign', name: 'feign-gson', version: '9.3.1'
+    compile group: 'io.github.openfeign', name: 'feign-slf4j', version: '9.3.1'
 }
 
 task javadocJar(type: Jar) {
@@ -84,6 +88,14 @@ uploadArchives {
                 }
 
             }
+        }
+    }
+}
+
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            from components.java
         }
     }
 }

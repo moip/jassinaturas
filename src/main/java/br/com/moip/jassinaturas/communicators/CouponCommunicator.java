@@ -1,21 +1,21 @@
 package br.com.moip.jassinaturas.communicators;
 
 import br.com.moip.jassinaturas.clients.attributes.Coupon;
-import feign.RequestLine;
 
-import javax.inject.Named;
+import feign.Param;
+import feign.RequestLine;
 
 public interface CouponCommunicator {
 
     @RequestLine("GET /coupons/{code}")
-    Coupon show(@Named("code") String code);
+    Coupon show(@Param("code") String code);
 
     @RequestLine("POST /coupons")
     Coupon create(Coupon coupon);
 
     @RequestLine("PUT /coupons/{code}/active")
-    Coupon activate(@Named("code") String code);
+    Coupon activate(@Param("code") String code);
 
     @RequestLine("PUT /coupons/{code}/inactive")
-    Coupon inactivate(@Named("code") String code);
+    Coupon inactivate(@Param("code") String code);
 }

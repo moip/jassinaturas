@@ -2,9 +2,9 @@ package br.com.moip.jassinaturas.communicators;
 
 import br.com.moip.jassinaturas.clients.attributes.BillingInfo;
 import br.com.moip.jassinaturas.clients.attributes.Customer;
-import feign.RequestLine;
 
-import javax.inject.Named;
+import feign.Param;
+import feign.RequestLine;
 
 public interface CustomerCommunicator {
 
@@ -18,11 +18,11 @@ public interface CustomerCommunicator {
     Customer list();
 
     @RequestLine("GET /customers/{code}")
-    Customer show(@Named("code") String code);
+    Customer show(@Param("code") String code);
 
     @RequestLine("PUT /customers/{code}")
-    Customer update(@Named("code") String code, Customer customer);
+    Customer update(@Param("code") String code, Customer customer);
 
     @RequestLine("PUT /customers/{code}/billing_infos")
-    Customer updateCreditCard(@Named("code") String code, BillingInfo billingInfo);
+    Customer updateCreditCard(@Param("code") String code, BillingInfo billingInfo);
 }
