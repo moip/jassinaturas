@@ -13,7 +13,7 @@ API Documentation/Reference: https://dev.moip.com.br/v1.5/docs
 <dependency>
    <groupId>br.com.moip</groupId>
    <artifactId>jassinaturas</artifactId>
-   <version>1.1.5</version>
+   <version>1.1.7</version>
 </dependency>
 ```
 
