@@ -8,11 +8,11 @@ import feign.RequestLine;
 public interface InvoiceCommunicator {
 
     @RequestLine("GET /invoices/{id}/payments")
-    Invoice payments(@Param("code") int id);
+    Invoice payments(@Param("id") int id);
 
     @RequestLine("GET /invoices/{id}")
-    Invoice show(@Param("code") int id);
+    Invoice show(@Param("id") int id);
 
     @RequestLine("POST /invoices/{id}/retry")
-    Invoice retry(@Param("code") int id);
+    Invoice retry(@Param("id") int id);
 }
