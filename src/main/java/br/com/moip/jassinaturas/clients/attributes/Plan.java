@@ -16,6 +16,7 @@ public class Plan {
     private int setupFee;
     private PlanStatus status;
     private Trial trial;
+    private String paymentMethod;
 
     public int getAmount() {
         return amount;
@@ -118,12 +119,20 @@ public class Plan {
         this.trial = trial;
         return this;
     }
+    
+    public String getPaymentMethod() {
+    	return paymentMethod;
+    }
+    
+    public void setPaymentMethod(String paymentMethod) {
+    	this.paymentMethod = paymentMethod;
+    }
 
     @Override
     public String toString() {
         return "Plan [alerts=" + alerts + ", amount=" + amount + ", billingCycles=" + billingCycles + ", code=" + code
                 + ", description=" + description + ", interval=" + interval + ", maxQty=" + maxQty + ", message="
-                + message + ", name=" + name + ", plans=" + plans + ", setupFee=" + setupFee + ", status=" + status
+                + message + ", name=" + name +", paymentMethod=" + paymentMethod + ", plans=" + plans + ", setupFee=" + setupFee + ", status=" + status
                 + ", trial=" + trial + "]";
     }
 
