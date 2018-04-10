@@ -4,6 +4,7 @@ import java.util.List;
 
 public class Subscription {
     private List<Alerts> alerts;
+    private InvoiceLinks _links;
     private int amount;
     private String code;
     private CreationDate creationDate;
@@ -144,6 +145,10 @@ public class Subscription {
     public PaymentMethodType getPaymentMethod() {
         return paymentMethod;
     }
+    
+    public InvoiceLinks get_links() {
+        return _links;
+    }
 
     @Override
     public String toString() {
@@ -166,6 +171,7 @@ public class Subscription {
         sb.append(", bestInvoiceDate=").append(bestInvoiceDate);
         sb.append(", trial=").append(trial);
         sb.append(", billingInfo=").append(billingInfo);
+        sb.append(", _links=").append(_links);
         sb.append('}');
         return sb.toString();
     }
