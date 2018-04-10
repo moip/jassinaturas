@@ -30,7 +30,7 @@ public class InvoiceClient {
         return invoice;
     }
     
-    public Invoice generateNewInvoice (final int id, final CreationDate dueDate) {
+    public Invoice generateNewInvoice (final String id, final CreationDate dueDate) {
     	Invoice invoice = invoiceCommunicator.generateNewOne(id, dueDate);
     	return invoice;
     }

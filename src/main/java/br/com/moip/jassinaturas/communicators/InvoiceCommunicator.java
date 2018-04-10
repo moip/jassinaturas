@@ -17,5 +17,5 @@ public interface InvoiceCommunicator {
     Invoice retry(@Param("id") int id);
     
     @RequestLine("POST /invoices/{id}/boletos")
-    Invoice generateNewOne(@Param("id") int id, CreationDate dueDate);
+    Invoice generateNewOne(@Param("id") String id, CreationDate dueDate);
 }
