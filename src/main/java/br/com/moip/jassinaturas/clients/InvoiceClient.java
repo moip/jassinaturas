@@ -1,10 +1,11 @@
 package br.com.moip.jassinaturas.clients;
 
-import br.com.moip.jassinaturas.clients.attributes.Payment;
-import br.com.moip.jassinaturas.clients.attributes.Invoice;
-import br.com.moip.jassinaturas.communicators.InvoiceCommunicator;
-
 import java.util.List;
+
+import br.com.moip.jassinaturas.clients.attributes.CreationDate;
+import br.com.moip.jassinaturas.clients.attributes.Invoice;
+import br.com.moip.jassinaturas.clients.attributes.Payment;
+import br.com.moip.jassinaturas.communicators.InvoiceCommunicator;
 
 public class InvoiceClient {
 
@@ -27,5 +28,10 @@ public class InvoiceClient {
     public Invoice retry(final int id) {
         Invoice invoice = invoiceCommunicator.retry(id);
         return invoice;
+    }
+    
+    public Invoice generateNewInvoice (final int id, final CreationDate dueDate) {
+    	Invoice invoice = invoiceCommunicator.generateNewOne(id, dueDate);
+    	return invoice;
     }
 }
