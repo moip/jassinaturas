@@ -9,6 +9,7 @@ public class Customer {
     private Birthdate birthdate;
     private String code;
     private String cpf;
+    private String cnpj;
     private List<Customer> customers;
     private String email;
     private String fullname;
@@ -46,6 +47,10 @@ public class Customer {
 
     public String getCpf() {
         return cpf;
+    }
+
+    public String getCnpj() {
+        return cnpj;
     }
 
     public List<Customer> getCustomers() {
@@ -96,6 +101,11 @@ public class Customer {
 
     public Customer withCpf(final String cpf) {
         this.cpf = cpf;
+        return this;
+    }
+
+    public Customer withCnpj(final String cnpj) {
+        this.cnpj = cnpj;
         return this;
     }
 
