@@ -50,6 +50,30 @@ public class CustomerClientTest {
     }
 
     @Test
+    public void shouldCreateANewCustomerWithCnpj() {
+        Customer toCreate = new Customer();
+        toCreate.withCode("customer000000001" + System.currentTimeMillis())
+                .withBirthdate(new Birthdate().withDay(13).withMonth(Month.OCTOBER).withYear(1989))
+                .withCnpj("12345678901234")
+                .withEmail("teste@teste.com")
+                .withFullname("Danillo Souza")
+                .withPhoneAreaCode("11")
+                .withPhoneNumber("912341234")
+                .withAddress(
+                        new Address().withCity("São Paulo").withComplement("Apto").withCountry(Country.BRA)
+                                .withDistrict("Centro").withNumber("1000").withState(State.SP).withStreet("9 de Julho")
+                                .withZipcode("10012345"))
+                .withBillingInfo(
+                        new BillingInfo().withCreditCard(new CreditCard().withExpirationMonth("10")
+                                .withExpirationYear("18").withHolderName("Danillo Souza")
+                                .withNumber("4111111111111111")));
+
+        Customer created = assinaturas.customers().create(toCreate);
+
+        assertEquals("Cliente criado com sucesso", created.getMessage());
+    }
+
+    @Test
     public void shouldCreateANewCustomerWithoutCreditCard() {
         Customer toCreate = new Customer();
         toCreate.withCode("customer_without_credit_card_"+System.currentTimeMillis())
